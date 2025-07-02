@@ -45,6 +45,12 @@ export default function PaymentRequests({ onStarClick, onNavigate, visibleCardCo
   const aggregatedData = aggregateByStatus();
   const totalActiveRequests = paymentRequests.filter(req => req.status === 'overdue' || req.status === 'due').length;
 
+  const handleStatusClick = (status: string) => {
+    const filterParam = status.toLowerCase();
+    // Navigate to GetPaid page with status filter
+    onNavigate?.(`Get Paid?status=${filterParam}`);
+  };
+
   return (
     <div className="card">
       <div className="card__header">
@@ -69,6 +75,7 @@ export default function PaymentRequests({ onStarClick, onNavigate, visibleCardCo
               invoices={data.invoices}
               paymentInfo={data.paymentInfo}
               status={data.status}
+              onClick={() => handleStatusClick(data.status)}
             />
           ))}
         </div>

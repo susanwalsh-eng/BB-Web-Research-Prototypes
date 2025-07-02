@@ -35,21 +35,37 @@ interface Transaction {
   avatarBg: string;
 }
 
+interface Invoice {
+  id: string;
+  payee: string;
+  reference: string;
+  dueDate: string;
+  status: 'paid' | 'overdue' | 'due' | 'draft';
+  amount: number;
+  avatar: string;
+  avatarBg: string;
+  description: string;
+  category: string;
+  paymentType: string;
+}
+
 export default function Dashboard() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [rightSidebarVisible, setRightSidebarVisible] = useState(false);
   const [selectedPaymentId, setSelectedPaymentId] = useState<string | undefined>();
   const [selectedTransactionId, setSelectedTransactionId] = useState<string | undefined>();
+  const [selectedInvoiceId, setSelectedInvoiceId] = useState<string | undefined>();
   const [sidePanelOpen, setSidePanelOpen] = useState(false);
   const [sidePanelData, setSidePanelData] = useState<{
     title: string;
-    content: Payment | Transaction;
-    type: 'payment' | 'transaction';
+    content: Payment | Transaction | Invoice;
+    type: 'payment' | 'transaction' | 'invoice';
   } | null>(null);
   const [sidePanelPosition, setSidePanelPosition] = useState<number>(0);
   const [contextualMenusOpen, setContextualMenusOpen] = useState(false);
   const [accountModalOpen, setAccountModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState('Home');
+  const [pageParams, setPageParams] = useState<string>('');
   const [visibleCardCount, setVisibleCardCount] = useState(3);
 
   const handleStarButtonClick = () => {
@@ -119,20 +135,53 @@ export default function Dashboard() {
     setSidePanelOpen(true);
   };
 
+  const handleInvoiceRowClick = (invoice: Invoice, rowElement?: HTMLElement | null) => {
+    if (contextualMenusOpen) {
+      setContextualMenusOpen(false);
+      setTimeout(() => {
+        openInvoicePanel(invoice, rowElement);
+      }, 150);
+    } else {
+      openInvoicePanel(invoice, rowElement);
+    }
+  };
+
+  const openInvoicePanel = (invoice: Invoice, rowElement?: HTMLElement | null) => {
+    if (rowElement) {
+      const rect = rowElement.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setSidePanelPosition(rect.top + scrollTop - 100); // Offset by 100px for better alignment
+    }
+    
+    setSelectedInvoiceId(invoice.id);
+    setSidePanelData({
+      title: `Invoice ${invoice.reference}`,
+      content: invoice,
+      type: 'invoice'
+    });
+    setSidePanelOpen(true);
+  };
+
   const handleSidePanelClose = () => {
     setSidePanelOpen(false);
     setSelectedPaymentId(undefined);
     setSelectedTransactionId(undefined);
+    setSelectedInvoiceId(undefined);
     setSidePanelData(null);
     setSidePanelPosition(0);
   };
 
   const handleNavigate = (page: string) => {
-    setCurrentPage(page);
+    // Parse page and query parameters
+    const [pageName, queryString] = page.split('?');
+    setCurrentPage(pageName);
+    setPageParams(queryString || '');
+    
     // Close any open panels when navigating
     setSidePanelOpen(false);
     setSelectedPaymentId(undefined);
     setSelectedTransactionId(undefined);
+    setSelectedInvoiceId(undefined);
     setSidePanelData(null);
     setSidePanelPosition(0);
   };
@@ -151,7 +200,17 @@ export default function Dashboard() {
       case 'Payments':
         return <Payments />;
       case 'Get Paid':
-        return <GetPaid />;
+        // Parse initial filter from page params
+        const urlParams = new URLSearchParams(pageParams);
+        const initialFilter = urlParams.get('status') || 'All';
+        return (
+          <GetPaid
+            onRowClick={handleInvoiceRowClick}
+            selectedRowId={selectedInvoiceId}
+            onNavigate={handleNavigate}
+            initialFilter={initialFilter}
+          />
+        );
       case 'Pots':
         return <Pots />;
       case 'Insights':
@@ -307,6 +366,50 @@ export default function Dashboard() {
       );
     }
 
+    if (type === 'invoice') {
+      const invoice = content as Invoice;
+      return (
+        <div className="side-panel-invoice">
+          <div className="side-panel-section">
+            <h3>Invoice Details</h3>
+            <div className="detail-row">
+              <span>Payee:</span>
+              <span>{invoice.payee}</span>
+            </div>
+            <div className="detail-row">
+              <span>Reference:</span>
+              <span>{invoice.reference}</span>
+            </div>
+            <div className="detail-row">
+              <span>Amount:</span>
+              <span className="amount-positive">£{invoice.amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            </div>
+            <div className="detail-row">
+              <span>Due Date:</span>
+              <span>{invoice.dueDate}</span>
+            </div>
+            <div className="detail-row">
+              <span>Status:</span>
+              <span className="capitalize">{invoice.status}</span>
+            </div>
+            <div className="detail-row">
+              <span>Category:</span>
+              <span>{invoice.category}</span>
+            </div>
+          </div>
+          
+          <div className="side-panel-section">
+            <h3>Actions</h3>
+            <div className="action-buttons-panel">
+              <button className="button-ui button-ui--primary">Send Reminder</button>
+              <button className="button-ui button-ui--secondary">Edit Invoice</button>
+              <button className="button-ui button-ui--tertiary">Download PDF</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return null;
   };
 
@@ -326,24 +429,56 @@ export default function Dashboard() {
           <SidePanel
             isOpen={sidePanelOpen}
             onClose={handleSidePanelClose}
-            title={sidePanelData?.type === 'payment' ? 'Scheduled Payment' : 'Transaction Details'}
+            title={
+              sidePanelData?.type === 'payment' ? 'Scheduled Payment' : 
+              sidePanelData?.type === 'invoice' ? 'Invoice Details' : 
+              'Transaction Details'
+            }
             isIntegrated={true}
-            avatar={sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).payee.substring(0, 2).toUpperCase() : (sidePanelData?.content as Transaction)?.name.substring(0, 2).toUpperCase() || 'CT'}
-            companyName={sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).payee : (sidePanelData?.content as Transaction)?.name || "Crisps 'n Ting"}
-            amount={sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).amount : (sidePanelData?.content as Transaction)?.amount || "£2,185.00"}
-            nextPaymentLabel={sidePanelData?.type === 'payment' ? 'Next payment' : 'Transaction date'}
-            nextPaymentDate={sidePanelData?.type === 'payment' ? 'Tuesday, 25 June, 04:05' : (sidePanelData?.content as Transaction)?.date || 'Tuesday, 25 June, 04:05'}
-            details={sidePanelData?.type === 'payment' ? [
-              { label: 'Reference', value: 'Monthly payment details' },
-              { label: 'Payment info', value: '1234567 •12-34-56', copyable: true },
-              { label: 'Scheduled for', value: 'Tuesday, 25 Jun 2025' },
-              { label: 'Repeats', value: 'Every 4 weeks on Wednesdays' },
-              { label: 'Stops', value: 'Sunday, 10 Nov 2025' }
-            ] : [
-              { label: 'Reference', value: (sidePanelData?.content as Transaction)?.description || 'Transaction details' },
-              { label: 'Type', value: (sidePanelData?.content as Transaction)?.type || 'expense' },
-              { label: 'Date', value: (sidePanelData?.content as Transaction)?.date || 'Today' }
-            ]}
+            avatar={
+              sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).payee.substring(0, 2).toUpperCase() :
+              sidePanelData?.type === 'invoice' ? (sidePanelData.content as Invoice).payee.substring(0, 2).toUpperCase() :
+              (sidePanelData?.content as Transaction)?.name.substring(0, 2).toUpperCase() || 'CT'
+            }
+            companyName={
+              sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).payee :
+              sidePanelData?.type === 'invoice' ? (sidePanelData.content as Invoice).payee :
+              (sidePanelData?.content as Transaction)?.name || "Crisps 'n Ting"
+            }
+            amount={
+              sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).amount :
+              sidePanelData?.type === 'invoice' ? `£${(sidePanelData.content as Invoice).amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` :
+              (sidePanelData?.content as Transaction)?.amount || "£2,185.00"
+            }
+            nextPaymentLabel={
+              sidePanelData?.type === 'payment' ? 'Next payment' :
+              sidePanelData?.type === 'invoice' ? 'Due date' :
+              'Transaction date'
+            }
+            nextPaymentDate={
+              sidePanelData?.type === 'payment' ? 'Tuesday, 25 June, 04:05' :
+              sidePanelData?.type === 'invoice' ? (sidePanelData.content as Invoice).dueDate :
+              (sidePanelData?.content as Transaction)?.date || 'Tuesday, 25 June, 04:05'
+            }
+            details={
+              sidePanelData?.type === 'payment' ? [
+                { label: 'Reference', value: 'Monthly payment details' },
+                { label: 'Payment info', value: '1234567 •12-34-56', copyable: true },
+                { label: 'Scheduled for', value: 'Tuesday, 25 Jun 2025' },
+                { label: 'Repeats', value: 'Every 4 weeks on Wednesdays' },
+                { label: 'Stops', value: 'Sunday, 10 Nov 2025' }
+              ] : sidePanelData?.type === 'invoice' ? [
+                { label: 'Reference', value: (sidePanelData.content as Invoice).reference },
+                { label: 'Status', value: (sidePanelData.content as Invoice).status.toUpperCase() },
+                { label: 'Category', value: (sidePanelData.content as Invoice).category },
+                { label: 'Due Date', value: (sidePanelData.content as Invoice).dueDate },
+                { label: 'Payment Type', value: (sidePanelData.content as Invoice).paymentType || 'Bank Transfer' }
+              ] : [
+                { label: 'Reference', value: (sidePanelData?.content as Transaction)?.description || 'Transaction details' },
+                { label: 'Type', value: (sidePanelData?.content as Transaction)?.type || 'expense' },
+                { label: 'Date', value: (sidePanelData?.content as Transaction)?.date || 'Today' }
+              ]
+            }
           />
         </div>
       </div>

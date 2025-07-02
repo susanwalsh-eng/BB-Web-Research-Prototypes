@@ -1,6 +1,6 @@
 'use client';
 
-import { getAccountBalance } from '@/utils/bankingData';
+import { getAccountBalance, formatCurrency } from '@/utils/bankingData';
 
 // Custom Icons
 const AccountDetailsIcon = ({ className }: { className?: string }) => (
@@ -22,8 +22,7 @@ interface AccountBalanceProps {
 
 export default function AccountBalance({ onAccountDetailsClick, onNavigate }: AccountBalanceProps) {
   const balance = getAccountBalance();
-  const balanceWhole = Math.floor(balance);
-  const balanceCents = Math.round((balance - balanceWhole) * 100);
+  const formattedBalance = formatCurrency(balance);
 
   return (
     <div className="card balance-card">
@@ -44,7 +43,7 @@ export default function AccountBalance({ onAccountDetailsClick, onNavigate }: Ac
         
         <div className="balance-right">
           <div className="balance-main">
-            <span className="balance-currency-symbol">£</span>{balanceWhole.toLocaleString('en-GB')}<span className="balance-cents">.{balanceCents.toString().padStart(2, '0')}</span>
+            {formattedBalance}
           </div>
           <div className="balance-currency">Balance in GBP</div>
         </div>

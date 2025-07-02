@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { formatCurrency } from '@/utils/bankingData';
 
 interface SidePanelProps {
   isOpen: boolean;
@@ -73,18 +74,19 @@ export default function SidePanel({
   };
 
   const formatAmount = (amount: string) => {
-    const [currency, main, cents] = amount.match(/([£$€])(\d+(?:,\d{3})*),(\d{2})/) || [];
-    if (currency && main && cents) {
-      return { currency, main, cents };
+    // Simple approach: if it's a string amount, try to parse and reformat
+    const numericValue = parseFloat(amount.replace(/[£$€,]/g, ''));
+    if (!isNaN(numericValue)) {
+      return formatCurrency(numericValue);
     }
-    return { currency: '£', main: amount.replace(/[£$€,]/g, ''), cents: '00' };
+    return amount; // Return as-is if parsing fails
   };
 
   if (!isOpen) return null;
 
   // Integrated side panel (matches Figma design)
   if (isIntegrated) {
-    const amountParts = amount ? formatAmount(amount) : null;
+    const formattedAmount = amount ? formatAmount(amount) : null;
     
     return (
       <div className="content-side-panel">
@@ -108,11 +110,9 @@ export default function SidePanel({
               <h3 className="side-panel__company-name">
                 {companyName || 'Company Name'}
               </h3>
-              {amountParts && (
-                <div className="side-panel__amount">
-                  <span className="side-panel__amount-currency">{amountParts.currency}</span>
-                  <span className="side-panel__amount-main">{amountParts.main}</span>
-                  <span className="side-panel__amount-cents">.{amountParts.cents}</span>
+              {formattedAmount && (
+                <div className="side-panel__amount" style={{ fontSize: '33.18px', fontWeight: 600, color: '#112231' }}>
+                  {formattedAmount}
                 </div>
               )}
               {nextPaymentLabel && nextPaymentDate && (

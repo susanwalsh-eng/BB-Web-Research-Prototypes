@@ -891,7 +891,7 @@ html, body {
 }
 
 .balance-cents {
-  font-size: 40px;
+  font-size: 24px;
   color: var(--primary-teal);
 }
 
@@ -2742,7 +2742,7 @@ html, body {
 }
 
 .side-panel__amount-cents {
-  font-size: 23.04px;
+  font-size: 13.8px;
   font-weight: 600;
   color: #112231;
   font-family: 'Inter', sans-serif;
@@ -3694,6 +3694,471 @@ html, body {
   
   .contextual-card__description {
     font-size: 13px;
+  }
+}
+
+/* Get Paid Page Styles - Final Figma Design */
+
+/* Action Cards Section */
+.action-cards-section {
+  margin-bottom: 32px;
+}
+
+.action-cards-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.action-cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+.action-card {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 320px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  flex-shrink: 0;
+}
+
+.action-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.action-card:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+.action-card__icon {
+  color: var(--primary-blue);
+  flex-shrink: 0;
+}
+
+.action-card__content {
+  flex: 1;
+}
+
+.action-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.action-card__description {
+  font-size: 14px;
+  color: var(--gray-600);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.action-card__arrow {
+  flex-shrink: 0;
+  color: var(--gray-400);
+  transition: color 0.2s ease;
+}
+
+.action-card:hover .action-card__arrow {
+  color: var(--primary-blue);
+}
+
+/* Tab Bar */
+.tab-bar {
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.tab-bar__container {
+  display: flex;
+  gap: 0;
+}
+
+.tab-bar__tab {
+  background: none;
+  border: none;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+
+.tab-bar__tab:hover {
+  color: var(--black);
+}
+
+.tab-bar__tab--active {
+  font-weight: 700;
+  color: var(--black);
+  border-bottom-color: var(--primary-blue);
+}
+
+/* Filter Pills Section */
+.filter-pills-section {
+  margin-bottom: 32px;
+}
+
+.filter-pills-container {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  background: none;
+  border: 1px solid var(--gray-300);
+  border-radius: 32px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-pill:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: var(--gray-400);
+}
+
+.filter-pill--active {
+  background-color: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.filter-pill__close {
+  width: 14px;
+  height: 14px;
+  color: var(--white);
+}
+
+/* Invoice Table Container */
+.invoice-table-container {
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.invoice-table {
+  width: 100%;
+}
+
+.invoice-table__header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 24px;
+  padding: 20px 24px;
+  background-color: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.invoice-table__header-cell {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.invoice-table__header-cell--amount {
+  text-align: right;
+}
+
+.invoice-table__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.invoice-table__row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 72px;
+}
+
+.invoice-table__row:hover {
+  background-color: rgba(33, 143, 183, 0.05);
+}
+
+.invoice-table__row:last-child {
+  border-bottom: none;
+}
+
+.invoice-table__row--clicked {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+.invoice-table__row--selected {
+  background-color: rgba(33, 143, 183, 0.08);
+}
+
+.invoice-table__cell {
+  display: flex;
+  align-items: center;
+}
+
+.invoice-table__cell--payee {
+  gap: 12px;
+}
+
+.invoice-table__cell--amount {
+  justify-content: flex-end;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.invoice-table__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.invoice-table__payee-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.invoice-table__payee-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.invoice-table__payee-reference {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Status Pills with Exact Figma Colors */
+.status-pill {
+  padding: 6px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+.status-pill--paid {
+  background-color: #00C281;
+  color: var(--white);
+}
+
+.status-pill--overdue {
+  background-color: #FF9E2C;
+  color: var(--white);
+}
+
+.status-pill--due {
+  background-color: #2E3D49;
+  color: var(--white);
+}
+
+.status-pill--draft {
+  background-color: rgba(160, 160, 160, 0.1);
+  color: var(--white);
+}
+
+/* Empty State */
+.invoice-table__empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--gray-500);
+  font-size: 16px;
+}
+
+/* Tab Content Placeholder */
+.tab-content-placeholder {
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tab-content-placeholder__content {
+  padding: 40px;
+  text-align: center;
+}
+
+.tab-content-placeholder__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gray-600);
+  margin: 0 0 16px 0;
+}
+
+.tab-content-placeholder__description {
+  font-size: 16px;
+  color: var(--gray-500);
+  margin: 0;
+}
+
+/* Responsive styles for Get Paid page */
+@media (max-width: 1024px) {
+  .action-cards-container {
+    gap: 16px;
+  }
+
+  .action-card {
+    min-width: 280px;
+    padding: 20px;
+  }
+
+  .invoice-table__header {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+
+  .invoice-table__row {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .action-cards-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .action-card {
+    min-width: auto;
+    padding: 20px;
+  }
+
+  .tab-bar__container {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .tab-bar__container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-bar__tab {
+    white-space: nowrap;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .filter-pills-container {
+    gap: 8px;
+  }
+
+  .filter-pill {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+
+  .invoice-table__header {
+    display: none;
+  }
+
+  .invoice-table__row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .invoice-table__cell--payee {
+    justify-content: flex-start;
+  }
+
+  .invoice-table__cell:not(.invoice-table__cell--payee) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .invoice-table__cell:not(.invoice-table__cell--payee)::before {
+    font-weight: 600;
+    color: var(--gray-600);
+  }
+
+  .invoice-table__row .invoice-table__cell:nth-child(2)::before {
+    content: 'Due Date: ';
+  }
+
+  .invoice-table__row .invoice-table__cell:nth-child(3)::before {
+    content: 'Status: ';
+  }
+
+  .invoice-table__row .invoice-table__cell:nth-child(4)::before {
+    content: 'Amount: ';
+  }
+
+  .invoice-table__cell--amount {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .action-card {
+    padding: 16px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .action-card__arrow {
+    display: none;
+  }
+
+  .action-card__title {
+    font-size: 15px;
+  }
+
+  .action-card__description {
+    font-size: 13px;
+  }
+
+  .invoice-table__row {
+    padding: 16px;
   }
 }
 

@@ -81,20 +81,22 @@ export const getPaymentRequestsByStatus = (status?: string): PaymentRequest[] =>
 export const formatCurrency = (amount: number): string => {
   const isNegative = amount < 0;
   const absAmount = Math.abs(amount);
-  const formatted = `£${absAmount.toLocaleString('en-GB', { 
-    minimumFractionDigits: 2, 
-    maximumFractionDigits: 2 
-  })}`;
-  return isNegative ? `-${formatted}` : formatted;
+  const formatted = absAmount.toLocaleString('en-GB', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+  const result = `£${formatted}`;
+  return isNegative ? `-${result}` : result;
 };
 
 export const formatAmountWithSign = (amount: number, type: 'income' | 'expense'): string => {
   const sign = type === 'income' ? '+' : '-';
   const absAmount = Math.abs(amount);
-  return `${sign}£${absAmount.toLocaleString('en-GB', { 
-    minimumFractionDigits: 2, 
-    maximumFractionDigits: 2 
-  })}`;
+  const formatted = absAmount.toLocaleString('en-GB', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+  return `${sign}£${formatted}`;
 };
 
 export const getStatusColor = (status: string): string => {

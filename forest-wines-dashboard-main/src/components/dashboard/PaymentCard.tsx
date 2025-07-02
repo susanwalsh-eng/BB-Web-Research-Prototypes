@@ -7,13 +7,15 @@ interface PaymentCardProps {
   invoices: number;
   paymentInfo: string;
   status: 'PAID' | 'OVERDUE' | 'DUE' | 'DRAFTS';
+  onClick?: () => void;
 }
 
 export default function PaymentCard({ 
   amount, 
   invoices, 
   paymentInfo, 
-  status
+  status,
+  onClick
 }: PaymentCardProps) {
   const [isActive, setIsActive] = useState(false);
 
@@ -49,14 +51,13 @@ export default function PaymentCard({
       onMouseUp={() => setIsActive(false)}
       onMouseLeave={() => setIsActive(false)}
       onClick={() => {
-        // Handle card click
-        console.log('Card clicked:', { amount, status });
+        onClick?.();
       }}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           setIsActive(true);
-          console.log('Card activated:', { amount, status });
+          onClick?.();
         }
       }}
       onKeyUp={() => setIsActive(false)}

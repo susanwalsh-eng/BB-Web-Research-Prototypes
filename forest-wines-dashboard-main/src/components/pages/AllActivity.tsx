@@ -261,19 +261,19 @@ export default function AllActivity({
                     <path d="M13 17l4-4-4-4M8 12l4 4" stroke="currentColor" strokeWidth="2"/>
                   </svg>
                 </div>
-                <div className="cash-flow-amount">£{netIncome.toLocaleString()}</div>
+                <div className="cash-flow-amount">{formatCurrency(netIncome)}</div>
                 <div className="cash-flow-period">This month</div>
               </div>
 
               <div className="cash-flow-item">
                 <div className="cash-flow-label">Money in</div>
-                <div className="cash-flow-amount cash-flow-positive">£{thisMonthIncome.toLocaleString()}</div>
+                <div className="cash-flow-amount cash-flow-positive">{formatCurrency(thisMonthIncome)}</div>
                 <div className="cash-flow-period">↑ 20% vs last month</div>
               </div>
 
               <div className="cash-flow-item">
                 <div className="cash-flow-label">Money out</div>
-                <div className="cash-flow-amount">£{thisMonthExpenses.toLocaleString()}</div>
+                <div className="cash-flow-amount">{formatCurrency(thisMonthExpenses)}</div>
                 <div className="cash-flow-period">↓ 11.2% vs last month</div>
               </div>
             </div>
