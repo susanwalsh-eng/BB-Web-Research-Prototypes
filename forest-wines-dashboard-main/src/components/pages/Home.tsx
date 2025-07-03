@@ -83,6 +83,7 @@ export default function Home({
                 onRowClick={onPaymentRowClick}
                 selectedRowId={selectedPaymentId}
                 onMenuStateChange={onMenuStateChange}
+                onNavigate={onNavigate}
               />
             </div>
             

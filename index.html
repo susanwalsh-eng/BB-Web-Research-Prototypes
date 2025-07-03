@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Wines Prototypes - Monzo Business</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --monzo-red: #d21f3c;
+            --monzo-teal: #00bfa5;
+            --monzo-navy: #001b44;
+            --monzo-light-grey: #f5f9f8;
+            --monzo-white: #ffffff;
+            --monzo-dark-grey: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--monzo-light-grey) 0%, #ffffff 100%);
+            min-height: 100vh;
+            color: var(--monzo-navy);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--monzo-white);
+            box-shadow: 0 2px 10px rgba(0, 27, 68, 0.1);
+            padding: 20px 0;
+            margin-bottom: 60px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--monzo-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--monzo-navy);
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--monzo-teal), #00a693);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 40px 0;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--monzo-navy);
+            margin-bottom: 16px;
+        }
+
+        .title p {
+            font-size: 20px;
+            color: var(--monzo-dark-grey);
+            opacity: 0.8;
+        }
+
+        /* Prototype Cards */
+        .prototypes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .prototype-card {
+            background: var(--monzo-white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 27, 68, 0.12);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prototype-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--monzo-red), var(--monzo-teal));
+        }
+
+        .prototype-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 27, 68, 0.15);
+            border-color: var(--monzo-teal);
+        }
+
+        .card-header {
+            margin-bottom: 24px;
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--monzo-navy);
+            margin-bottom: 12px;
+        }
+
+        .card-description {
+            font-size: 16px;
+            color: var(--monzo-dark-grey);
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .card-features {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .card-features li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--monzo-dark-grey);
+        }
+
+        .card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--monzo-teal);
+            font-weight: 700;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--monzo-red), #b91a35);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(210, 31, 60, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(210, 31, 60, 0.4);
+            background: linear-gradient(135deg, #b91a35, var(--monzo-red));
+        }
+
+        .cta-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .prototypes {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                margin-top: 40px;
+            }
+
+            .prototype-card {
+                padding: 24px;
+            }
+
+            .title h1 {
+                font-size: 36px;
+            }
+
+            .title p {
+                font-size: 18px;
+            }
+
+            .card-title {
+                font-size: 24px;
+            }
+
+            .logo-text {
+                font-size: 24px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .prototypes {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .prototype-card {
+                padding: 20px;
+            }
+
+            .title h1 {
+                font-size: 28px;
+            }
+
+            .cta-button {
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--monzo-light-grey);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--monzo-light-grey);
+            border-top: 4px solid var(--monzo-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading State -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content" class="hidden">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <div class="logo-icon">M</div>
+                        <span class="logo-text">Monzo</span>
+                    </div>
+                    <div class="badge">Business Banking</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <div class="title">
+                    <h1>Forest Wines Prototypes</h1>
+                    <p>Explore our business banking dashboard concepts</p>
+                </div>
+
+                <div class="prototypes">
+                    <!-- Prototype 1 -->
+                    <div class="prototype-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Prototype One</h2>
+                            <p class="card-description">Monzo Business Banking Homepage v1</p>
+                        </div>
+                        
+                        <ul class="card-features">
+                            <li>Clean dashboard interface</li>
+                            <li>Payment request management</li>
+                            <li>Account balance overview</li>
+                            <li>Contextual sidebar cards</li>
+                        </ul>
+                        
+                        <a href="./BB Web - User Research/prototype-1/" class="cta-button">
+                            View Prototype
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Prototype 2 -->
+                    <div class="prototype-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Prototype Two</h2>
+                            <p class="card-description">Monzo Business Banking Homepage v2</p>
+                        </div>
+                        
+                        <ul class="card-features">
+                            <li>Enhanced layout system</li>
+                            <li>Suggested actions panel</li>
+                            <li>Improved side panel</li>
+                            <li>Better responsive design</li>
+                        </ul>
+                        
+                        <a href="./BB Web - User Research/prototype-2/" class="cta-button">
+                            View Prototype
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Password protection
+        const PASSWORD = "forest2025";
+        
+        function authenticateUser() {
+            const userInput = prompt("🔒 Enter password to access Forest Wines prototypes:");
+            
+            if (userInput === null) {
+                // User cancelled
+                alert("Access denied. Redirecting to Monzo.com");
+                window.location.href = "https://monzo.com";
+                return false;
+            }
+            
+            if (userInput !== PASSWORD) {
+                alert("❌ Incorrect password. Redirecting to Monzo.com");
+                window.location.href = "https://monzo.com";
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Initialize page
+        window.addEventListener('DOMContentLoaded', function() {
+            // Show loading state briefly
+            setTimeout(function() {
+                if (authenticateUser()) {
+                    // Authentication successful
+                    document.getElementById('loading').classList.add('hidden');
+                    document.getElementById('content').classList.remove('hidden');
+                    
+                    // Add smooth entrance animation
+                    document.getElementById('content').style.opacity = '0';
+                    document.getElementById('content').style.transform = 'translateY(20px)';
+                    
+                    setTimeout(function() {
+                        document.getElementById('content').style.transition = 'all 0.6s ease';
+                        document.getElementById('content').style.opacity = '1';
+                        document.getElementById('content').style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            }, 1000);
+        });
+        
+        // Prevent right-click context menu (basic protection)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        // Prevent F12, Ctrl+Shift+I, Ctrl+U (basic protection)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.key === 'U')) {
+                e.preventDefault();
+                alert("🔒 Developer tools are disabled for security.");
+            }
+        });
+    </script>
+</body>
+</html> 

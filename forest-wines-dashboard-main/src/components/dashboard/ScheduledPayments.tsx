@@ -17,9 +17,10 @@ interface ScheduledPaymentsProps {
   onRowClick: (payment: Payment, element?: HTMLElement | null) => void;
   selectedRowId?: string;
   onMenuStateChange?: (isOpen: boolean) => void;
+  onNavigate?: (page: string) => void;
 }
 
-export default function ScheduledPayments({ onRowClick, selectedRowId, onMenuStateChange }: ScheduledPaymentsProps) {
+export default function ScheduledPayments({ onRowClick, selectedRowId, onMenuStateChange, onNavigate }: ScheduledPaymentsProps) {
   const [sortField, setSortField] = useState<'date' | 'amount' | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [clickedRowId, setClickedRowId] = useState<string | null>(null);
@@ -242,12 +243,15 @@ export default function ScheduledPayments({ onRowClick, selectedRowId, onMenuSta
         </div>
         
         <div className="card-footer">
-          <a href="#" className="view-all-link">
+          <button 
+            className="view-all-link" 
+            onClick={() => onNavigate?.('Payments')}
+          >
             View all payments
             <svg width="24" height="24" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15.7563 15.9546L10.8813 11.0796C10.6522 10.8504 10.5376 10.5588 10.5376 10.2046C10.5376 9.85042 10.6522 9.55876 10.8813 9.32959C11.1105 9.10042 11.4022 8.98584 11.7563 8.98584C12.1105 8.98584 12.4022 9.10042 12.6313 9.32959L18.3813 15.0796C18.5063 15.2046 18.5949 15.34 18.647 15.4858C18.6991 15.6317 18.7251 15.7879 18.7251 15.9546C18.7251 16.1213 18.6991 16.2775 18.647 16.4233C18.5949 16.5692 18.5063 16.7046 18.3813 16.8296L12.6313 22.5796C12.4022 22.8088 12.1105 22.9233 11.7563 22.9233C11.4022 22.9233 11.1105 22.8088 10.8813 22.5796C10.6522 22.3504 10.5376 22.0588 10.5376 21.7046C10.5376 21.3504 10.6522 21.0588 10.8813 20.8296L15.7563 15.9546Z" fill="#218FB7"/>
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </div>

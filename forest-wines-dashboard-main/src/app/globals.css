@@ -796,6 +796,12 @@ html, body {
   font-size: 20px;
   font-weight: 500;
   transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
 }
 
 .view-all-link:hover {
@@ -3701,35 +3707,28 @@ html, body {
 
 /* Action Cards Section */
 .action-cards-section {
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
 .action-cards-container {
   display: flex;
   gap: 20px;
-  overflow-x: auto;
-  padding: 4px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.action-cards-container::-webkit-scrollbar {
-  display: none;
+  flex-wrap: wrap;
 }
 
 .action-card {
   background-color: var(--white);
   border-radius: 16px;
-  padding: 24px;
+  padding: 20px;
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   gap: 16px;
-  min-width: 320px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  min-width: 300px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.04);
-  flex-shrink: 0;
 }
 
 .action-card:hover {
@@ -4035,12 +4034,12 @@ html, body {
 /* Responsive styles for Get Paid page */
 @media (max-width: 1024px) {
   .action-cards-container {
+    flex-direction: column;
     gap: 16px;
   }
 
   .action-card {
-    min-width: 280px;
-    padding: 20px;
+    min-width: auto;
   }
 
   .invoice-table__header {
@@ -4058,13 +4057,18 @@ html, body {
 
 @media (max-width: 768px) {
   .action-cards-container {
-    flex-direction: column;
     gap: 12px;
   }
 
   .action-card {
-    min-width: auto;
-    padding: 20px;
+    padding: 16px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .action-card__arrow {
+    display: none;
   }
 
   .tab-bar__container {
@@ -4139,14 +4143,7 @@ html, body {
 
 @media (max-width: 480px) {
   .action-card {
-    padding: 16px;
-    flex-direction: column;
-    text-align: center;
-    gap: 12px;
-  }
-
-  .action-card__arrow {
-    display: none;
+    padding: 12px;
   }
 
   .action-card__title {
@@ -4162,4 +4159,528 @@ html, body {
   }
 }
 
+/* Payments Page Styles - New Implementation */
 
+/* Page Header */
+.payments-header {
+  margin-bottom: 40px;
+}
+
+.payments-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.payments-subtitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Payment Tools Section */
+.payment-tools-section {
+  margin-bottom: 40px;
+}
+
+.payment-tools-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.payment-tool-card {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 300px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.payment-tool-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.payment-tool-card:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+.payment-tool-card__icon {
+  color: var(--primary-blue);
+  flex-shrink: 0;
+}
+
+.payment-tool-card__content {
+  flex: 1;
+}
+
+.payment-tool-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.payment-tool-card__description {
+  font-size: 14px;
+  color: var(--gray-600);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.payment-tool-card__arrow {
+  flex-shrink: 0;
+  color: var(--gray-400);
+  transition: color 0.2s ease;
+}
+
+.payment-tool-card:hover .payment-tool-card__arrow {
+  color: var(--primary-blue);
+}
+
+/* Recent Recipients Section */
+.recent-recipients-section {
+  margin-bottom: 40px;
+}
+
+.recent-recipients-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+}
+
+.recent-recipients-container {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  padding: 4px;
+}
+
+.recent-recipient-card {
+  position: relative;
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 200px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: none;
+  text-align: left;
+}
+
+.recent-recipient-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.recent-recipient-card:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.recent-recipient-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.recent-recipient-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  width: 100%;
+}
+
+.recent-recipient-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recent-recipient-bank-details {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin: 0;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+/* Scheduled Payments Section */
+.scheduled-payments-section {
+  margin-bottom: 40px;
+}
+
+.scheduled-payments-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.scheduled-payments-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--black);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.scheduled-payments-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.payments-filter-pill {
+  background: none;
+  border: 1px solid var(--gray-300);
+  border-radius: 32px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payments-filter-pill:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: var(--gray-400);
+}
+
+.payments-filter-pill--active {
+  background-color: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+/* Scheduled Payments Table */
+.scheduled-payments-table-container {
+  background-color: var(--white);
+  border-radius: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.scheduled-payments-table {
+  width: 100%;
+}
+
+.scheduled-payments-table__header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 24px;
+  padding: 20px 24px;
+  background-color: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.scheduled-payments-table__header-cell {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.scheduled-payments-table__header-cell--amount {
+  text-align: right;
+}
+
+.scheduled-payments-table__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.scheduled-payments-table__row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 72px;
+}
+
+.scheduled-payments-table__row:hover {
+  background-color: rgba(33, 143, 183, 0.05);
+}
+
+.scheduled-payments-table__row:last-child {
+  border-bottom: none;
+}
+
+.scheduled-payments-table__row--clicked {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+.scheduled-payments-table__row--selected {
+  background-color: rgba(33, 143, 183, 0.08);
+}
+
+.scheduled-payments-table__cell {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--black);
+}
+
+.scheduled-payments-table__cell--payee {
+  gap: 12px;
+}
+
+.scheduled-payments-table__cell--amount {
+  justify-content: flex-end;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.scheduled-payments-table__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.scheduled-payments-table__payee-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.scheduled-payments-table__payee-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.scheduled-payments-table__payee-reference {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Empty State */
+.scheduled-payments-table__empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--gray-500);
+  font-size: 16px;
+}
+
+/* Responsive styles for Payments page */
+@media (max-width: 1024px) {
+  .payment-tools-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .payment-tool-card {
+    min-width: auto;
+  }
+
+  .recent-recipients-container {
+    gap: 10px;
+    width: 100%;
+  }
+
+  .recent-recipient-card {
+    min-width: 180px;
+    padding: 12px;
+  }
+
+  /* Show only 3 cards on tablet */
+  .recent-recipient-card:nth-child(n+4) {
+    display: none;
+  }
+
+  .scheduled-payments-table__header {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+
+  .scheduled-payments-table__row {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .payments-title {
+    font-size: 28px;
+  }
+
+  .payments-subtitle {
+    font-size: 18px;
+  }
+
+  .payment-tools-container {
+    gap: 12px;
+  }
+
+  .payment-tool-card {
+    padding: 16px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .payment-tool-card__arrow {
+    display: none;
+  }
+
+  .recent-recipients-container {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .recent-recipient-card {
+    flex-direction: row;
+    text-align: left;
+    min-width: auto;
+    padding: 12px;
+    width: 100%;
+  }
+
+  /* Show only 2 cards on mobile */
+  .recent-recipient-card:nth-child(n+3) {
+    display: none;
+  }
+
+  .scheduled-payments-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .scheduled-payments-table__header {
+    display: none;
+  }
+
+  .scheduled-payments-table__row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .scheduled-payments-table__cell--payee {
+    justify-content: flex-start;
+  }
+
+  .scheduled-payments-table__cell:not(.scheduled-payments-table__cell--payee) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .scheduled-payments-table__cell:not(.scheduled-payments-table__cell--payee)::before {
+    font-weight: 600;
+    color: var(--gray-600);
+  }
+
+  .scheduled-payments-table__row .scheduled-payments-table__cell:nth-child(2)::before {
+    content: 'Next payment: ';
+  }
+
+  .scheduled-payments-table__row .scheduled-payments-table__cell:nth-child(3)::before {
+    content: 'Type: ';
+  }
+
+  .scheduled-payments-table__row .scheduled-payments-table__cell:nth-child(4)::before {
+    content: 'Amount: ';
+  }
+
+  .scheduled-payments-table__cell--amount {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .payments-title {
+    font-size: 24px;
+  }
+
+  .payments-subtitle {
+    font-size: 16px;
+  }
+
+  .payment-tool-card {
+    padding: 12px;
+  }
+
+  .payment-tool-card__title {
+    font-size: 15px;
+  }
+
+  .payment-tool-card__description {
+    font-size: 13px;
+  }
+
+  .recent-recipient-card {
+    padding: 10px;
+  }
+
+  .scheduled-payments-table__row {
+    padding: 12px;
+  }
+}
