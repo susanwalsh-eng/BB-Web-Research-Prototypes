@@ -129,4 +129,6 @@ dist
 Thumbs.db
 *.swp
 *.swo
-*~
+*~forest-wines-dashboard-main/
+forest-wines-dashboard-main-prototype-2/
+forest-wines-dashboard-unified/
