@@ -1,0 +1,60 @@
+[
+  {
+    "id": "approve-payment-271",
+    "type": "approval",
+    "icon": "💰",
+    "title": "Approve a payment",
+    "reference": "Invoice #271 to Beer for All",
+    "amount": 1547.17,
+    "cta": [
+      { "type": "primary", "text": "Approve", "action": "approve-payment" },
+      { "type": "secondary", "text": "Review details", "action": "review-details" }
+    ]
+  },
+  {
+    "id": "overdue-invoice-1496",
+    "type": "reminder",
+    "status": "OVERDUE",
+    "icon": "⚠️",
+    "title": "Invoice #1496 overdue",
+    "body": "This invoice is awaiting payment and is now 14 days overdue.",
+    "amount": 2847.50,
+    "cta": [
+      { "type": "primary", "text": "Send reminder", "action": "send-reminder" },
+      { "type": "secondary", "text": "Review details", "action": "review-details" }
+    ]
+  },
+  {
+    "id": "complete-drafts",
+    "type": "feature",
+    "icon": "✏️",
+    "title": "Complete 5 draft invoices",
+    "body": "Finish your draft invoices to send them to customers.",
+    "cta": [
+      { "type": "primary", "text": "Continue drafts", "action": "continue-drafts" },
+      { "type": "secondary", "text": "View all", "action": "view-all-drafts" }
+    ]
+  },
+  {
+    "id": "new-payment-request",
+    "type": "feature",
+    "icon": "📧",
+    "title": "Send payment request",
+    "body": "Create and send a new payment request to get paid faster.",
+    "cta": [
+      { "type": "primary", "text": "Create request", "action": "create-request" },
+      { "type": "secondary", "text": "Learn more", "action": "learn-more" }
+    ]
+  },
+  {
+    "id": "review-cashflow",
+    "type": "info",
+    "icon": "📊",
+    "title": "Review your cashflow",
+    "body": "Your upcoming payments need review for June planning.",
+    "cta": [
+      { "type": "primary", "text": "View insights", "action": "view-insights" },
+      { "type": "secondary", "text": "Export data", "action": "export-data" }
+    ]
+  }
+] 
