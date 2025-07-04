@@ -191,8 +191,7 @@ export default function Sidebar({ collapsed = false, onToggle, currentPage = 'Ho
         <ul className="nav__list" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
           {navItems.map((item) => {
             const Icon = item.icon;
-            // Treat "All Activity" page as part of "Home" for navigation purposes
-            const isActive = currentPage === item.name || (currentPage === 'All Activity' && item.name === 'Home');
+            const isActive = currentPage === item.name;
             return (
               <li key={item.name} className="nav__item">
                 <button

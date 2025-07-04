@@ -6,6 +6,8 @@ import PaymentRequests from '@/components/dashboard/PaymentRequests';
 import ScheduledPayments from '@/components/dashboard/ScheduledPayments';
 import RecentActivity from '@/components/dashboard/RecentActivity';
 import CashFlow from '@/components/dashboard/CashFlow';
+import Pots from '@/components/dashboard/Pots';
+import ExploreMonzoBusinessPro from '@/components/ui/ExploreMonzoBusinessPro';
 
 interface Payment {
   id: string;
@@ -31,7 +33,8 @@ interface Transaction {
 
 interface HomeProps {
   onAccountDetailsClick: () => void;
-  onStarClick: () => void;
+  onPaymentRequestsStarClick: () => void;
+  onScheduledPaymentsStarClick: () => void;
   selectedPaymentId?: string;
   selectedTransactionId?: string;
   onPaymentRowClick: (payment: Payment) => void;
@@ -40,12 +43,18 @@ interface HomeProps {
   onNavigate?: (page: string) => void;
   rightSidebarVisible?: boolean;
   contextualContent?: React.ReactNode;
-  visibleCardCount?: number;
+  paymentRequestsVisibleCardCount?: number;
+  scheduledPaymentsVisibleCardCount?: number;
+  paymentRequestsDisabled?: boolean;
+  scheduledPaymentsDisabled?: boolean;
+  paymentRequestsActive?: boolean;
+  scheduledPaymentsActive?: boolean;
 }
 
 export default function Home({
   onAccountDetailsClick,
-  onStarClick,
+  onPaymentRequestsStarClick,
+  onScheduledPaymentsStarClick,
   selectedPaymentId,
   selectedTransactionId,
   onPaymentRowClick,
@@ -54,7 +63,12 @@ export default function Home({
   onNavigate,
   rightSidebarVisible,
   contextualContent,
-  visibleCardCount
+  paymentRequestsVisibleCardCount,
+  scheduledPaymentsVisibleCardCount,
+  paymentRequestsDisabled,
+  scheduledPaymentsDisabled,
+  paymentRequestsActive,
+  scheduledPaymentsActive
 }: HomeProps) {
   return (
     <div className="main-layout">
@@ -75,16 +89,26 @@ export default function Home({
           
           <div className="dashboard-grid" style={{ paddingBottom: '100px' }}>
             <div className="dashboard-col-full">
-              <PaymentRequests onStarClick={onStarClick} onNavigate={onNavigate} visibleCardCount={visibleCardCount} />
+                                      <PaymentRequests 
+              onStarClick={onPaymentRequestsStarClick}
+              onNavigate={onNavigate}
+              visibleCardCount={paymentRequestsVisibleCardCount}
+              isDisabled={paymentRequestsDisabled}
+              isActive={paymentRequestsActive}
+            />
             </div>
             
             <div className="dashboard-col-full">
-              <ScheduledPayments 
-                onRowClick={onPaymentRowClick}
-                selectedRowId={selectedPaymentId}
-                onMenuStateChange={onMenuStateChange}
-                onNavigate={onNavigate}
-              />
+            <ScheduledPayments 
+              onRowClick={onPaymentRowClick}
+              selectedRowId={selectedPaymentId}
+              onMenuStateChange={onMenuStateChange}
+              onNavigate={onNavigate}
+              onStarClick={onScheduledPaymentsStarClick}
+              visibleCardCount={scheduledPaymentsVisibleCardCount}
+              isDisabled={scheduledPaymentsDisabled}
+              isActive={scheduledPaymentsActive}
+            />
             </div>
             
             <div className="dashboard-col-full">
@@ -97,6 +121,38 @@ export default function Home({
                 selectedRowId={selectedTransactionId}
                 onMenuStateChange={onMenuStateChange}
                 onNavigate={onNavigate}
+              />
+            </div>
+            
+            <div className="dashboard-col-full">
+              <Pots onNavigate={onNavigate} />
+            </div>
+            
+            <div className="dashboard-col-full">
+              <ExploreMonzoBusinessPro 
+                onActionClick={(cardId: string, actionType: string) => {
+                  console.log(`Explore action: ${actionType} for ${cardId}`);
+                  // Handle different explore actions
+                  switch (actionType) {
+                    case 'create-a-quote':
+                      console.log('Create a quote action');
+                      break;
+                    case 'create-a-tax-pot':
+                      console.log('Create a tax pot action');
+                      break;
+                    case 'make-a-deposit':
+                      console.log('Make a deposit action');
+                      break;
+                    case 'explore-team-plan':
+                      console.log('Explore team plan action');
+                      break;
+                    case 'dismiss':
+                      console.log('Dismiss action');
+                      break;
+                    default:
+                      console.log('Unknown explore action type:', actionType);
+                  }
+                }}
               />
             </div>
           </div>

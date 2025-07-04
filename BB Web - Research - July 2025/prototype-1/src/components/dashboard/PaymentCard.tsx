@@ -36,12 +36,33 @@ export default function PaymentCard({
   };
 
   const getSubtitleText = () => {
-    if (isActive) {
-      return `${invoices} invoice${invoices !== 1 ? 's' : ''} • ${paymentInfo}`;
+    if (invoices === 0) {
+      return `No ${status.toLowerCase()} invoices`;
     }
-    // Truncate for default state
-    const fullText = `${invoices} invoice${invoices !== 1 ? 's' : ''} • ${paymentInfo}`;
-    return fullText.length > 25 ? fullText.substring(0, 25) + '...' : fullText;
+    
+    // Dynamic descriptions based on status and count
+    const getStatusDescription = () => {
+      switch (status) {
+        case 'OVERDUE':
+          return invoices === 1 ? 'overdue invoice' : 'overdue invoices';
+        case 'DUE':
+          return invoices === 1 ? 'invoice due' : 'invoices due';
+        case 'DRAFTS':
+          return invoices === 1 ? 'draft' : 'drafts';
+        case 'PAID':
+          return invoices === 1 ? 'paid invoice' : 'paid invoices';
+        default:
+          return invoices === 1 ? 'invoice' : 'invoices';
+      }
+    };
+    
+    const description = `${invoices} ${getStatusDescription()}`;
+    
+    if (isActive) {
+      return description;
+    }
+    // Truncate for default state if needed
+    return description.length > 25 ? description.substring(0, 25) + '...' : description;
   };
 
   return (

@@ -209,6 +209,58 @@ export default function AccountDetailsModal({ isOpen, onClose }: AccountDetailsM
               </div>
             </div>
           </div>
+
+          {/* IBAN */}
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            marginBottom: '20px'
+          }}>
+            <span style={{ color: '#6B7280', fontSize: '16px' }}>IBAN</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontWeight: '500', color: '#111827' }}>GB29 MONZ 0012 3456 7890 12</span>
+              <button
+                onClick={() => copyToClipboard('GB29MONZ001234567890 12')}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#6B7280',
+                  fontSize: '16px'
+                }}
+                title="Copy IBAN"
+              >
+                📋
+              </button>
+            </div>
+          </div>
+
+          {/* BIC */}
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            marginBottom: '20px'
+          }}>
+            <span style={{ color: '#6B7280', fontSize: '16px' }}>BIC</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontWeight: '500', color: '#111827' }}>MONZGB2L</span>
+              <button
+                onClick={() => copyToClipboard('MONZGB2L')}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#6B7280',
+                  fontSize: '16px'
+                }}
+                title="Copy BIC"
+              >
+                📋
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Cancel button */}

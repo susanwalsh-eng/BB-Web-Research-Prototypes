@@ -21,13 +21,15 @@ interface AllActivityProps {
   selectedRowId?: string;
   onMenuStateChange?: (isOpen: boolean) => void;
   onNavigate?: (page: string) => void;
+  showBackButton?: boolean;
 }
 
 export default function AllActivity({ 
   onRowClick, 
   selectedRowId, 
   onMenuStateChange, 
-  onNavigate 
+  onNavigate,
+  showBackButton = false
 }: AllActivityProps) {
   const [selectedFilters, setSelectedFilters] = useState<string[]>(['This month']);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
@@ -176,17 +178,19 @@ export default function AllActivity({
       {/* Page Header with Back Button */}
       <div className="all-activity-header">
         <div className="all-activity-header-container">
-          {/* Back Button */}
-          <button className="back-button" onClick={handleBackClick}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 12H5m0 0l7 7m-7-7l7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Back
-          </button>
+          {/* Back Button - only show when showBackButton prop is true */}
+          {showBackButton && (
+            <button className="back-button" onClick={handleBackClick}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 12H5m0 0l7 7m-7-7l7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Back
+            </button>
+          )}
           
           {/* Page Title Row with Download Button */}
           <div className="all-activity-title-row">
-            <h1 className="all-activity-title">All activity</h1>
+            <h1 className="all-activity-title">Activity</h1>
             
             {/* Download Statements Button */}
             <button className="download-statements-btn">

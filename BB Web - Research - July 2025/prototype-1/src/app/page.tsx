@@ -64,7 +64,8 @@ interface ScheduledPayment {
 
 export default function Dashboard() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [rightSidebarVisible, setRightSidebarVisible] = useState(false);
+  const [paymentRequestsRightSidebarVisible, setPaymentRequestsRightSidebarVisible] = useState(false);
+  const [scheduledPaymentsRightSidebarVisible, setScheduledPaymentsRightSidebarVisible] = useState(false);
   const [selectedPaymentId, setSelectedPaymentId] = useState<string | undefined>();
   const [selectedTransactionId, setSelectedTransactionId] = useState<string | undefined>();
   const [selectedInvoiceId, setSelectedInvoiceId] = useState<string | undefined>();
@@ -80,18 +81,46 @@ export default function Dashboard() {
   const [accountModalOpen, setAccountModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState('Home');
   const [pageParams, setPageParams] = useState<string>('');
-  const [visibleCardCount, setVisibleCardCount] = useState(3);
+  const [paymentRequestsVisibleCardCount, setPaymentRequestsVisibleCardCount] = useState(3);
+  const [scheduledPaymentsVisibleCardCount, setScheduledPaymentsVisibleCardCount] = useState(2);
 
-  const handleStarButtonClick = () => {
-    const newRightSidebarVisible = !rightSidebarVisible;
-    setRightSidebarVisible(newRightSidebarVisible);
+  const handlePaymentRequestsStarButtonClick = () => {
+    const newRightSidebarVisible = !paymentRequestsRightSidebarVisible;
+    setPaymentRequestsRightSidebarVisible(newRightSidebarVisible);
+    
+    // Close the other contextual stack if it's open
+    if (newRightSidebarVisible && scheduledPaymentsRightSidebarVisible) {
+      setScheduledPaymentsRightSidebarVisible(false);
+    }
     
     // When opening the right sidebar, collapse the left sidebar for more space
     if (newRightSidebarVisible) {
       setSidebarCollapsed(true);
     } else {
-      // When closing the right sidebar, open the left sidebar back up
-      setSidebarCollapsed(false);
+      // When closing the right sidebar, open the left sidebar back up only if no other sidebar is visible
+      if (!scheduledPaymentsRightSidebarVisible) {
+        setSidebarCollapsed(false);
+      }
+    }
+  };
+
+  const handleScheduledPaymentsStarButtonClick = () => {
+    const newRightSidebarVisible = !scheduledPaymentsRightSidebarVisible;
+    setScheduledPaymentsRightSidebarVisible(newRightSidebarVisible);
+    
+    // Close the other contextual stack if it's open
+    if (newRightSidebarVisible && paymentRequestsRightSidebarVisible) {
+      setPaymentRequestsRightSidebarVisible(false);
+    }
+    
+    // When opening the right sidebar, collapse the left sidebar for more space
+    if (newRightSidebarVisible) {
+      setSidebarCollapsed(true);
+    } else {
+      // When closing the right sidebar, open the left sidebar back up only if no other sidebar is visible
+      if (!paymentRequestsRightSidebarVisible) {
+        setSidebarCollapsed(false);
+      }
     }
   };
 
@@ -231,13 +260,17 @@ export default function Dashboard() {
 
   const renderCurrentPage = () => {
     switch (currentPage) {
-      case 'All Activity':
+      case 'Activity':
+        // Parse URL params to determine if back button should be shown
+        const activityParams = new URLSearchParams(pageParams);
+        const showBackButton = activityParams.get('from') !== null;
         return (
           <AllActivity
             onRowClick={handleTransactionRowClick}
             selectedRowId={selectedTransactionId}
             onMenuStateChange={setContextualMenusOpen}
             onNavigate={handleNavigate}
+            showBackButton={showBackButton}
           />
         );
       case 'Payments':
@@ -250,8 +283,8 @@ export default function Dashboard() {
         );
       case 'Get Paid':
         // Parse initial filter from page params
-        const urlParams = new URLSearchParams(pageParams);
-        const initialFilter = urlParams.get('status') || 'All';
+        const getPaidParams = new URLSearchParams(pageParams);
+        const initialFilter = getPaidParams.get('status') || 'All';
         return (
           <GetPaid
             onRowClick={handleInvoiceRowClick}
@@ -270,63 +303,121 @@ export default function Dashboard() {
         return (
           <Home
             onAccountDetailsClick={() => setAccountModalOpen(true)}
-            onStarClick={handleStarButtonClick}
+            onPaymentRequestsStarClick={handlePaymentRequestsStarButtonClick}
+            onScheduledPaymentsStarClick={handleScheduledPaymentsStarButtonClick}
             selectedPaymentId={selectedPaymentId}
             selectedTransactionId={selectedTransactionId}
             onPaymentRowClick={handlePaymentRowClick}
             onTransactionRowClick={handleTransactionRowClick}
             onMenuStateChange={setContextualMenusOpen}
             onNavigate={handleNavigate}
-            rightSidebarVisible={rightSidebarVisible}
-            visibleCardCount={visibleCardCount}
+            rightSidebarVisible={paymentRequestsRightSidebarVisible || scheduledPaymentsRightSidebarVisible}
+            paymentRequestsVisibleCardCount={paymentRequestsVisibleCardCount}
+            scheduledPaymentsVisibleCardCount={scheduledPaymentsVisibleCardCount}
+            paymentRequestsDisabled={paymentRequestsVisibleCardCount === 0}
+            scheduledPaymentsDisabled={scheduledPaymentsVisibleCardCount === 0}
+            paymentRequestsActive={paymentRequestsRightSidebarVisible}
+            scheduledPaymentsActive={scheduledPaymentsRightSidebarVisible}
             contextualContent={
               <div className="right-sidebar">
-                <div className="right-sidebar__content">
-                  <ContextualCardStack
-                    cards={[
-                      {
-                        id: 'overdue-invoices',
-                        type: 'warning',
-                        icon: '😬',
-                        title: '5 invoices are overdue',
-                        description: 'Send a reminder to your customers to pay their invoices to sure up your cashflow for June.',
-                        action: {
-                          text: 'Send reminders',
-                          onClick: () => console.log('Send reminders clicked')
+                {paymentRequestsRightSidebarVisible && (
+                  <div className="right-sidebar__content">
+                    <ContextualCardStack
+                      cards={[
+                        {
+                          id: 'overdue-invoices',
+                          type: 'warning',
+                          icon: '😬',
+                          title: '5 invoices are overdue',
+                          description: 'Send a reminder to your customers to pay their invoices to sure up your cashflow for June.',
+                          action: {
+                            text: 'Send reminders',
+                            onClick: () => console.log('Send reminders clicked')
+                          },
+                          isExpanded: true
                         },
-                        isExpanded: true
-                      },
-                      {
-                        id: 'invoice-1496',
-                        type: 'urgent',
-                        icon: '🟠',
-                        title: 'Invoice #1496 overdue by 14 days',
-                        description: 'This invoice is still awaiting payment from Chase Shop International and needs immediate attention.',
-                        action: {
-                          text: 'Send reminder',
-                          onClick: () => console.log('Send reminder for invoice #1496')
+                        {
+                          id: 'invoice-1496',
+                          type: 'urgent',
+                          icon: '🟠',
+                          title: 'Invoice #1496 overdue by 14 days',
+                          description: 'This invoice is still awaiting payment from Chase Shop International and needs immediate attention.',
+                          action: {
+                            text: 'Send reminder',
+                            onClick: () => console.log('Send reminder for invoice #1496')
+                          },
+                          isExpanded: false
                         },
-                        isExpanded: false
-                      },
-                      {
-                        id: 'finish-drafts',
-                        type: 'feature',
-                        icon: '✏️',
-                        title: 'Finish your drafts',
-                        description: '5 invoices are still in draft status and need to be finished for you to be able to send them to customers.',
-                        action: {
-                          text: 'Continue drafts',
-                          onClick: () => console.log('Continue drafts clicked')
+                        {
+                          id: 'finish-drafts',
+                          type: 'feature',
+                          icon: '✏️',
+                          title: 'Finish your drafts',
+                          description: '5 invoices are still in draft status and need to be finished for you to be able to send them to customers.',
+                          action: {
+                            text: 'Continue drafts',
+                            onClick: () => console.log('Continue drafts clicked')
+                          },
+                          isExpanded: false
+                        }
+                      ]}
+                      onCardClose={(cardId) => {
+                        console.log(`Card ${cardId} closed`);
+                        const newCount = Math.max(0, paymentRequestsVisibleCardCount - 1);
+                        setPaymentRequestsVisibleCardCount(newCount);
+                        if (newCount === 0) {
+                          setPaymentRequestsRightSidebarVisible(false);
+                          if (!scheduledPaymentsRightSidebarVisible) {
+                            setSidebarCollapsed(false);
+                          }
+                        }
+                      }}
+                    />
+                  </div>
+                )}
+                {scheduledPaymentsRightSidebarVisible && (
+                  <div className="right-sidebar__content right-sidebar__content--scheduled-payments">
+                    <ContextualCardStack
+                      cards={[
+                        {
+                          id: 'bulk-payment-setup',
+                          type: 'info',
+                          icon: '💳',
+                          title: 'Set up bulk payment for June payroll',
+                          description: 'Your June payroll is scheduled but needs final approval. Review and approve the bulk payment to ensure employees are paid on time.',
+                          action: {
+                            text: 'Review payroll',
+                            onClick: () => console.log('Review payroll clicked')
+                          },
+                          isExpanded: true
                         },
-                        isExpanded: false
-                      }
-                    ]}
-                    onCardClose={(cardId) => {
-                      console.log(`Card ${cardId} closed`);
-                      setVisibleCardCount(prev => Math.max(0, prev - 1));
-                    }}
-                  />
-                </div>
+                        {
+                          id: 'payment-reminder',
+                          type: 'warning',
+                          icon: '⏰',
+                          title: 'Payment to Cheese shop due tomorrow',
+                          description: 'Standing order payment of £285.00 is scheduled for tomorrow. Ensure sufficient balance is available.',
+                          action: {
+                            text: 'Check balance',
+                            onClick: () => console.log('Check balance clicked')
+                          },
+                          isExpanded: false
+                        }
+                      ]}
+                      onCardClose={(cardId) => {
+                        console.log(`Scheduled payment card ${cardId} closed`);
+                        const newCount = Math.max(0, scheduledPaymentsVisibleCardCount - 1);
+                        setScheduledPaymentsVisibleCardCount(newCount);
+                        if (newCount === 0) {
+                          setScheduledPaymentsRightSidebarVisible(false);
+                          if (!paymentRequestsRightSidebarVisible) {
+                            setSidebarCollapsed(false);
+                          }
+                        }
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             }
           />
@@ -472,86 +563,94 @@ export default function Dashboard() {
       />
       
       <div className="main-content">
-        <div className={`content-layout ${currentPage === 'All Activity' ? 'content-layout--full-width' : !rightSidebarVisible ? 'content-layout--full-width' : ''} ${sidePanelOpen ? 'content-layout--with-side-panel' : ''} ${rightSidebarVisible ? 'content-layout--with-right-sidebar' : ''}`}>
-          {renderCurrentPage()}
-          
-          <SidePanel
-            isOpen={sidePanelOpen}
-            onClose={handleSidePanelClose}
-            title={
-              sidePanelData?.type === 'payment' ? 'Scheduled Payment' : 
-              sidePanelData?.type === 'invoice' ? 'Invoice Details' : 
-              sidePanelData?.type === 'scheduled-payment' ? 'Scheduled Payment' :
-              'Transaction Details'
-            }
-            isIntegrated={true}
-            avatar={
-              sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).payee.substring(0, 2).toUpperCase() :
-              sidePanelData?.type === 'invoice' ? (sidePanelData.content as Invoice).payee.substring(0, 2).toUpperCase() :
-              sidePanelData?.type === 'scheduled-payment' ? (sidePanelData.content as ScheduledPayment).payee.substring(0, 2).toUpperCase() :
-              (sidePanelData?.content as Transaction)?.name.substring(0, 2).toUpperCase() || 'CT'
-            }
-            companyName={
-              sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).payee :
-              sidePanelData?.type === 'invoice' ? (sidePanelData.content as Invoice).payee :
-              sidePanelData?.type === 'scheduled-payment' ? (sidePanelData.content as ScheduledPayment).payee :
-              (sidePanelData?.content as Transaction)?.name || "Crisps 'n Ting"
-            }
-            amount={
-              sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).amount :
-              sidePanelData?.type === 'invoice' ? `£${(sidePanelData.content as Invoice).amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` :
-              sidePanelData?.type === 'scheduled-payment' ? `£${(sidePanelData.content as ScheduledPayment).amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` :
-              (sidePanelData?.content as Transaction)?.amount || "£2,185.00"
-            }
-            nextPaymentLabel={
-              sidePanelData?.type === 'payment' ? 'Next payment' :
-              sidePanelData?.type === 'invoice' ? 'Due date' :
-              sidePanelData?.type === 'scheduled-payment' ? 'Next payment' :
-              'Transaction date'
-            }
-            nextPaymentDate={
-              sidePanelData?.type === 'payment' ? 'Tuesday, 25 June, 04:05' :
-              sidePanelData?.type === 'invoice' ? (sidePanelData.content as Invoice).dueDate :
-              sidePanelData?.type === 'scheduled-payment' ? (sidePanelData.content as ScheduledPayment).nextPayment :
-              (sidePanelData?.content as Transaction)?.date || 'Tuesday, 25 June, 04:05'
-            }
-            details={
-              sidePanelData?.type === 'payment' ? [
-                { label: 'Reference', value: 'Monthly payment details' },
-                { label: 'Payment info', value: '1234567 •12-34-56', copyable: true },
-                { label: 'Scheduled for', value: 'Tuesday, 25 Jun 2025' },
-                { label: 'Repeats', value: 'Every 4 weeks on Wednesdays' },
-                { label: 'Stops', value: 'Sunday, 10 Nov 2025' }
-              ] : sidePanelData?.type === 'invoice' ? [
-                { label: 'Reference', value: (sidePanelData.content as Invoice).reference },
-                { label: 'Status', value: (sidePanelData.content as Invoice).status.toUpperCase() },
-                { label: 'Category', value: (sidePanelData.content as Invoice).category },
-                { label: 'Due Date', value: (sidePanelData.content as Invoice).dueDate },
-                { label: 'Payment Type', value: (sidePanelData.content as Invoice).paymentType || 'Bank Transfer' }
-              ] : sidePanelData?.type === 'scheduled-payment' ? [
-                { label: 'Reference', value: (sidePanelData.content as ScheduledPayment).reference },
-                { label: 'Payment Type', value: (sidePanelData.content as ScheduledPayment).type },
-                { label: 'Category', value: (sidePanelData.content as ScheduledPayment).category },
-                { label: 'Next Payment', value: (sidePanelData.content as ScheduledPayment).nextPayment },
-                { label: 'Schedule', value: 'Recurring monthly payment' }
-              ] : [
-                { label: 'Reference', value: (sidePanelData?.content as Transaction)?.description || 'Transaction details' },
-                { label: 'Type', value: (sidePanelData?.content as Transaction)?.type || 'expense' },
-                { label: 'Date', value: (sidePanelData?.content as Transaction)?.date || 'Today' }
-              ]
-            }
-          />
+        <div className={`main-layout ${sidePanelOpen ? 'has-side-panel' : ''}`}>
+          <div className={`main-layout-content ${currentPage === 'Activity' ? 'main-layout-content--full-width' : ''}`}>
+            <div className="left-column">
+              {renderCurrentPage()}
+            </div>
+          </div>
         </div>
+        
+        {sidePanelOpen && (
+          <div className="content-side-panel">
+            <SidePanel
+              isOpen={sidePanelOpen}
+              onClose={handleSidePanelClose}
+              title={
+                sidePanelData?.type === 'payment' ? 'Scheduled Payment' : 
+                sidePanelData?.type === 'invoice' ? 'Invoice Details' : 
+                sidePanelData?.type === 'scheduled-payment' ? 'Scheduled Payment' :
+                'Transaction Details'
+              }
+              isIntegrated={true}
+              avatar={
+                sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).payee.substring(0, 2).toUpperCase() :
+                sidePanelData?.type === 'invoice' ? (sidePanelData.content as Invoice).payee.substring(0, 2).toUpperCase() :
+                sidePanelData?.type === 'scheduled-payment' ? (sidePanelData.content as ScheduledPayment).payee.substring(0, 2).toUpperCase() :
+                (sidePanelData?.content as Transaction)?.name.substring(0, 2).toUpperCase() || 'CT'
+              }
+              companyName={
+                sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).payee :
+                sidePanelData?.type === 'invoice' ? (sidePanelData.content as Invoice).payee :
+                sidePanelData?.type === 'scheduled-payment' ? (sidePanelData.content as ScheduledPayment).payee :
+                (sidePanelData?.content as Transaction)?.name || "Crisps 'n Ting"
+              }
+              amount={
+                sidePanelData?.type === 'payment' ? (sidePanelData.content as Payment).amount :
+                sidePanelData?.type === 'invoice' ? `£${(sidePanelData.content as Invoice).amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` :
+                sidePanelData?.type === 'scheduled-payment' ? `£${(sidePanelData.content as ScheduledPayment).amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` :
+                (sidePanelData?.content as Transaction)?.amount || "£2,185.00"
+              }
+              nextPaymentLabel={
+                sidePanelData?.type === 'payment' ? 'Next payment' :
+                sidePanelData?.type === 'invoice' ? 'Due date' :
+                sidePanelData?.type === 'scheduled-payment' ? 'Next payment' :
+                'Transaction date'
+              }
+              nextPaymentDate={
+                sidePanelData?.type === 'payment' ? 'Tuesday, 25 June, 04:05' :
+                sidePanelData?.type === 'invoice' ? (sidePanelData.content as Invoice).dueDate :
+                sidePanelData?.type === 'scheduled-payment' ? (sidePanelData.content as ScheduledPayment).nextPayment :
+                (sidePanelData?.content as Transaction)?.date || 'Tuesday, 25 June, 04:05'
+              }
+              details={
+                sidePanelData?.type === 'payment' ? [
+                  { label: 'Reference', value: 'Monthly payment details' },
+                  { label: 'Payment info', value: '1234567 •12-34-56', copyable: true },
+                  { label: 'Scheduled for', value: 'Tuesday, 25 Jun 2025' },
+                  { label: 'Repeats', value: 'Every 4 weeks on Wednesdays' },
+                  { label: 'Stops', value: 'Sunday, 10 Nov 2025' }
+                ] : sidePanelData?.type === 'invoice' ? [
+                  { label: 'Reference', value: (sidePanelData.content as Invoice).reference },
+                  { label: 'Status', value: (sidePanelData.content as Invoice).status.toUpperCase() },
+                  { label: 'Category', value: (sidePanelData.content as Invoice).category },
+                  { label: 'Due Date', value: (sidePanelData.content as Invoice).dueDate },
+                  { label: 'Payment Type', value: (sidePanelData.content as Invoice).paymentType || 'Bank Transfer' }
+                ] : sidePanelData?.type === 'scheduled-payment' ? [
+                  { label: 'Reference', value: (sidePanelData.content as ScheduledPayment).reference },
+                  { label: 'Payment Type', value: (sidePanelData.content as ScheduledPayment).type },
+                  { label: 'Category', value: (sidePanelData.content as ScheduledPayment).category },
+                  { label: 'Next Payment', value: (sidePanelData.content as ScheduledPayment).nextPayment },
+                  { label: 'Schedule', value: 'Recurring monthly payment' }
+                ] : [
+                  { label: 'Reference', value: (sidePanelData?.content as Transaction)?.description || 'Transaction details' },
+                  { label: 'Type', value: (sidePanelData?.content as Transaction)?.type || 'expense' },
+                  { label: 'Date', value: (sidePanelData?.content as Transaction)?.date || 'Today' }
+                ]
+              }
+            />
+          </div>
+        )}
       </div>
       
       {/* Account Details Modal */}
-              <AccountDetailsModal
-          isOpen={accountModalOpen}
-          onClose={() => {
-            setAccountModalOpen(false);
-            setSidebarCollapsed(false); // Open the sidebar when modal closes
-          }}
-        />
+      <AccountDetailsModal
+        isOpen={accountModalOpen}
+        onClose={() => {
+          setAccountModalOpen(false);
+          setSidebarCollapsed(false); // Open the sidebar when modal closes
+        }}
+      />
     </div>
   );
 } 

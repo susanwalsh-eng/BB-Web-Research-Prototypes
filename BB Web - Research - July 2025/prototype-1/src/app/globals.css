@@ -501,10 +501,24 @@ html, body {
 .main-content {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+  flex-direction: row;
+  overflow: hidden; /* Hide all scrollbars at this level */
   min-height: 100vh;
-  overflow-x: visible; /* Allow sidebar to extend beyond content width */
+}
+
+/* When side panel is open, adjust main content to provide space */
+.main-content:has(.content-side-panel) {
+  justify-content: space-between;
+}
+
+.main-content .main-layout {
+  flex: 1;
+  min-width: 0;
+  transition: all 0.3s ease;
+}
+
+.main-content:has(.content-side-panel) .main-layout {
+  margin-right: 480px; /* Use margin instead of max-width for better behavior */
 }
 
 /* Dashboard Header Block - Contains title/sign-in and action buttons */
@@ -681,84 +695,60 @@ html, body {
 }
 
 .add-btn {
-  position: relative;
-  background-color: var(--white);
-  color: var(--primary-blue);
-  border: 1px solid var(--primary-blue);
-  border-radius: 100px;
-  width: 90px;
-  height: 50px;
-  padding: 0 12px;
-  font-size: 14px;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 100px;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  color: #218fb7;
+  border: 1px solid #218fb7;
+  border-radius: 500px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
 }
 
-.add-btn svg,
-.add-btn span {
-  position: relative;
-  z-index: 3;
+.add-btn:hover {
+  background-color: #218fb7;
+  color: #ffffff;
 }
 
-.add-btn::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    rgba(33, 143, 183, 1) 30deg,
-    rgba(33, 143, 183, 1) 90deg,
-    transparent 120deg,
-    transparent 360deg
-  );
-  border-radius: 100px;
-  animation: rotate-glow 2s linear infinite;
-  z-index: 1;
+.add-btn:hover .add-btn__text {
+  color: #ffffff;
 }
 
-.add-btn--clicked::before {
-  display: none;
+.add-btn:hover svg path {
+  fill: #ffffff;
 }
 
-.add-btn::after {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  right: 2px;
-  bottom: 2px;
-  background: var(--white);
-  border-radius: 100px;
-  z-index: 2;
+.add-btn__text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #218fb7;
+  line-height: 1;
+  transition: color 0.2s;
 }
 
-.add-btn--active::after {
-  background: rgba(33, 143, 183, 0.1);
-}
-
-@keyframes rotate-glow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.add-btn:hover:not(.add-btn--active) {
-  background-color: var(--primary-blue);
-  color: var(--white);
+.add-btn svg path {
+  fill: #218fb7;
+  transition: fill 0.2s;
 }
 
 .add-btn--active {
-  background-color: rgba(33, 143, 183, 0.1);
-  color: var(--primary-blue);
-  border-color: var(--primary-blue);
+  background-color: #218fb7;
+  color: #ffffff;
+}
+
+.add-btn--active .add-btn__text {
+  color: #ffffff;
+}
+
+.add-btn--active svg path {
+  fill: #ffffff;
 }
 
 .add-btn__count {
@@ -776,6 +766,28 @@ html, body {
   align-items: center;
   justify-content: center;
   line-height: 1;
+}
+
+/* Disabled state styles */
+.add-btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.add-btn--disabled:hover {
+  background-color: #ffffff !important;
+  color: #218fb7 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.add-btn--disabled .add-btn__text {
+  color: #218fb7 !important;
+}
+
+.add-btn--disabled svg path {
+  fill: #218fb7 !important;
 }
 
 .card__content {
@@ -1563,7 +1575,7 @@ html, body {
   justify-content: space-between;
   align-items: center;
   margin-top: 16px;
-  padding: 16px 8px;
+  padding: 16px 24px;
   background: #f8f9fa;
   border-radius: 8px;
 }
@@ -2243,11 +2255,11 @@ html, body {
 
 /* When side panel is open, adjust content-left margin to accommodate fixed side panel */
 .content-layout--with-side-panel .content-left {
-  margin-right: 256px;
+  margin-right: 480px;
 }
 
 .content-layout--full-width.content-layout--with-side-panel .content-left {
-  margin-right: 296px;
+  margin-right: 480px;
 }
 
 /* Also adjust header block when side panel is open */
@@ -2296,6 +2308,10 @@ html, body {
   flex-direction: column;
   gap: 16px;
   margin-top: 580px; /* Align with payment requests section */
+}
+
+.right-column .right-sidebar__content--scheduled-payments {
+  margin-top: 632px !important; /* Align with scheduled payments section */
 }
 
 
@@ -2944,7 +2960,7 @@ html, body {
 .dashboard-grid {
   display: grid;
   gap: 24px;
-  margin-top: 24px;
+  margin-top: 0px;
   position: relative; /* Make this the positioning context for right sidebar */
 }
 
@@ -3293,14 +3309,17 @@ html, body {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  height: 100vh;
+  overflow-x: hidden;
+  min-height: 100vh;
   position: relative;
+  /* Hide scrollbars completely */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
+  width: 100%;
 }
 
 .main-layout::-webkit-scrollbar {
-  display: none; /* WebKit */
+  display: none; /* WebKit browsers */
 }
 
 .main-layout-content {
@@ -3314,12 +3333,12 @@ html, body {
   flex: 1;
   position: relative;
   overflow: visible;
+  transition: margin-right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* When right column is not present, left column takes full width */
 .main-layout-content:has(.left-column:only-child) {
   grid-template-columns: 1fr;
-  max-width: 1228px;
 }
 
 /* Alternative approach for better browser support */
@@ -3328,12 +3347,29 @@ html, body {
   max-width: 1228px;
 }
 
+/* When side panel is open, adjust main content margin */
+.main-layout.has-side-panel .main-layout-content {
+  margin-right: 480px;
+}
+
+/* On tablet, adjust for smaller side panel */
+@media (max-width: 1024px) {
+  .content-side-panel {
+    width: 400px;
+  }
+  
+  .main-layout.has-side-panel .main-layout-content {
+    margin-right: 400px;
+  }
+}
+
 .left-column {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  overflow: visible;
+  gap: 20px;
+  overflow: visible; /* Allow content to flow naturally */
   position: relative;
+  min-width: 0; /* Allow content to shrink */
 }
 
 .right-column {
@@ -4682,5 +4718,388 @@ html, body {
 
   .scheduled-payments-table__row {
     padding: 12px;
+  }
+}
+
+/* Pots Section Styles */
+.pots {
+  background-color: var(--white);
+  border-radius: 20px;
+  padding: 24px;
+  margin: 0;
+}
+
+.pots__total-balance {
+  font-weight: 400;
+  color: #6B7280;
+  margin-left: 8px;
+}
+
+.pots__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 24px;
+}
+
+.pot-summary-item {
+  position: relative;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.pot-summary-item:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.pot-summary-item__stacked-icons {
+  position: relative;
+  width: 70px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.pot-summary-item__icon-stack {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  font-size: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pot-summary-item__icon-stack:nth-child(1) {
+  left: 0px;
+  background-color: #FEF3C7;
+}
+
+.pot-summary-item__icon-stack:nth-child(2) {
+  left: 15px;
+  background-color: #DBEAFE;
+}
+
+.pot-summary-item__icon-stack:nth-child(3) {
+  left: 30px;
+  background-color: #FDE2E7;
+}
+
+.pot-summary-item__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pot-summary-item__name {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1F2937;
+  line-height: 1.4;
+}
+
+.pot-summary-item__sub-label {
+  font-size: 14px;
+  color: #6B7280;
+  line-height: 1.4;
+}
+
+.pot-summary-item__balance {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pot-summary-item__chevron {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #6B7280;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.pot-summary-item__chevron--visible {
+  opacity: 1;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.pots__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.pots__footer {
+  border-top: 1px solid #E5E7EB;
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pots__view-all {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2563EB;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  transition: text-decoration 0.2s ease;
+}
+
+.pots__view-all:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .pots__list {
+    gap: 0;
+  }
+  
+  .pot-summary-item {
+    padding: 14px 20px;
+  }
+  
+  .pot-summary-item__stacked-icons {
+    width: 60px;
+    height: 32px;
+  }
+  
+  .pot-summary-item__icon-stack {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  
+  .pot-summary-item__icon-stack:nth-child(2) {
+    left: 12px;
+  }
+  
+  .pot-summary-item__icon-stack:nth-child(3) {
+    left: 24px;
+  }
+  
+  .pot-summary-item__balance {
+    font-size: 14px;
+  }
+}
+
+/* Task Card Styles for ExploreMonzoBusinessPro */
+.task-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 300px;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.task-card:nth-child(2) {
+  background: var(--white) !important;
+}
+
+.task-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border-color: #E5E7EB;
+}
+
+.task-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.task-card__icon {
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-card__status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.task-card__content {
+  margin-bottom: 20px;
+}
+
+.task-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.task-card__body {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.task-card__amount {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.task-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.task-card__btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  flex: 1;
+  min-width: 0;
+}
+
+.task-card__btn--primary {
+  background-color: var(--primary-blue);
+  color: var(--white);
+}
+
+.task-card__btn--primary:hover {
+  background-color: #1976a3;
+}
+
+.task-card__btn--secondary {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-200);
+}
+
+.task-card__btn--secondary:hover {
+  background-color: var(--gray-200);
+  color: var(--gray-800);
+}
+
+/* Tasks component styles */
+.tasks__controls {
+  display: flex;
+  gap: 8px;
+}
+
+.tasks__control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: 50%;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.tasks__control-btn:hover:not(.tasks__control-btn--disabled) {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.tasks__control-btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: var(--gray-100);
+  color: var(--gray-400);
+  border-color: var(--gray-200);
+}
+
+.tasks__container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tasks__container::-webkit-scrollbar {
+  display: none;
+}
+
+.tasks__cards {
+  display: flex;
+  gap: 20px;
+  padding: 4px;
+  min-width: max-content;
+}
+
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .task-card {
+    min-width: 280px;
+    padding: 16px;
+  }
+  
+  .task-card__actions {
+    flex-direction: column;
+  }
+  
+  .task-card__btn {
+    flex: none;
   }
 }
