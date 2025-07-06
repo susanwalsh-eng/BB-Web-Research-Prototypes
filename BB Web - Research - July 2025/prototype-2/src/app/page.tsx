@@ -1,17 +1,18 @@
 'use client';
 
-import { useState } from 'react';
-import Sidebar from '@/components/layout/Sidebar';
-import Home from '@/components/pages/Home';
-import AllActivity from '@/components/pages/AllActivity';
-import GetPaid from '@/components/pages/GetPaid';
-import Payments from '@/components/pages/Payments';
-import Pots from '@/components/pages/Pots';
-import Insights from '@/components/pages/Insights';
-import Team from '@/components/pages/Team';
-import AccountDetailsModal from '@/components/modals/AccountDetailsModal';
-import SidePanel from '@/components/ui/SidePanel';
-import SuggestedActions from '@/components/ui/SuggestedActions';
+import React, { useState, useEffect } from 'react';
+import Sidebar from '../components/layout/Sidebar';
+import Header from '../components/layout/Header';
+import Home from '../components/pages/Home';
+import AllActivity from '../components/pages/AllActivity';
+import GetPaid from '../components/pages/GetPaid';
+import Payments from '../components/pages/Payments';
+import Pots from '../components/pages/Pots';
+import Insights from '../components/pages/Insights';
+import Team from '../components/pages/Team';
+import AccountDetailsModal from '../components/modals/AccountDetailsModal';
+import SidePanel from '../components/ui/SidePanel';
+import Tasks from '../components/ui/Tasks';
 
 interface Payment {
   id: string;
@@ -217,17 +218,24 @@ export default function Dashboard() {
     setSelectedScheduledPaymentId(undefined);
     setSidePanelData(null);
     setSidePanelPosition(0);
+    
+    // Scroll to top when navigating to a new page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const renderCurrentPage = () => {
     switch (currentPage) {
-      case 'All Activity':
+      case 'Activity':
+        // Parse URL params to determine if back button should be shown
+        const activityParams = new URLSearchParams(pageParams);
+        const showBackButton = activityParams.get('from') !== null;
         return (
           <AllActivity
             onRowClick={handleTransactionRowClick}
             selectedRowId={selectedTransactionId}
             onMenuStateChange={setContextualMenusOpen}
             onNavigate={handleNavigate}
+            showBackButton={showBackButton}
           />
         );
       case 'Payments':
@@ -240,8 +248,8 @@ export default function Dashboard() {
         );
       case 'Get Paid':
         // Parse initial filter from page params
-        const urlParams = new URLSearchParams(pageParams);
-        const initialFilter = urlParams.get('status') || 'All';
+        const getPaidParams = new URLSearchParams(pageParams);
+        const initialFilter = getPaidParams.get('status') || 'All';
         return (
           <GetPaid
             onRowClick={handleInvoiceRowClick}
@@ -266,10 +274,10 @@ export default function Dashboard() {
             onTransactionRowClick={handleTransactionRowClick}
             onMenuStateChange={setContextualMenusOpen}
             onNavigate={handleNavigate}
-            suggestedActionsContent={
-              <SuggestedActions
-                onActionClick={(actionId, actionType) => {
-                  console.log(`Action clicked: ${actionType} for ${actionId}`);
+            tasksContent={
+              <Tasks
+                onActionClick={(actionId: string, actionType: string) => {
+                  console.log(`Task action clicked: ${actionType} for ${actionId}`);
                   // Handle different action types
                   switch (actionType) {
                     case 'approve-payment':
@@ -298,8 +306,6 @@ export default function Dashboard() {
     }
   };
 
-
-
   return (
     <div className="dashboard-container">
       <Sidebar 
@@ -311,7 +317,7 @@ export default function Dashboard() {
       
       <div className="main-content">
         <div className={`main-layout ${sidePanelOpen ? 'has-side-panel' : ''}`}>
-          <div className={`main-layout-content ${currentPage === 'All Activity' ? 'main-layout-content--full-width' : ''}`}>
+          <div className={`main-layout-content ${currentPage === 'Activity' ? 'main-layout-content--full-width' : ''}`}>
             <div className="left-column">
               {renderCurrentPage()}
             </div>
@@ -383,21 +389,21 @@ export default function Dashboard() {
                   { label: 'Reference', value: (sidePanelData?.content as Transaction)?.description || 'Transaction details' },
                   { label: 'Type', value: (sidePanelData?.content as Transaction)?.type || 'expense' },
                   { label: 'Date', value: (sidePanelData?.content as Transaction)?.date || 'Today' }
-                              ]
-            }
+                ]
+              }
             />
           </div>
         )}
       </div>
       
       {/* Account Details Modal */}
-              <AccountDetailsModal
-          isOpen={accountModalOpen}
-          onClose={() => {
-            setAccountModalOpen(false);
-            setSidebarCollapsed(false); // Open the sidebar when modal closes
-          }}
-        />
+      <AccountDetailsModal
+        isOpen={accountModalOpen}
+        onClose={() => {
+          setAccountModalOpen(false);
+          setSidebarCollapsed(false); // Open the sidebar when modal closes
+        }}
+      />
     </div>
   );
 } 

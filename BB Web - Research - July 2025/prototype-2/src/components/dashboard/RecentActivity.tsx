@@ -152,42 +152,43 @@ export default function RecentActivity({ onRowClick, selectedRowId, onMenuStateC
         <h2 className="card__title">Recent activity</h2>
       </div>
       <div className="card__content">
-        {/* Filter Chips */}
-        <div className="filter-chips">
-          {filters.map((filter) => (
-            <button
-              key={filter.id}
-              className={`filter-chip ${selectedFilters.includes(filter.id) ? 'filter-chip--selected' : ''}`}
-              onClick={() => handleFilterClick(filter.id)}
-            >
-              {filter.label}
-              <span className="filter-chip__count">{filter.count}</span>
-            </button>
-          ))}
-        </div>
+        {/* Filter Chips and Activity Controls Row */}
+        <div className="activity-controls-wrapper">
+          <div className="filter-chips">
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                className={`filter-chip ${selectedFilters.includes(filter.id) ? 'filter-chip--selected' : ''}`}
+                onClick={() => handleFilterClick(filter.id)}
+              >
+                {filter.label}
+                <span className="filter-chip__count">{filter.count}</span>
+              </button>
+            ))}
+          </div>
 
-        {/* Date Range and Export Controls */}
-        <div className="activity-controls">
-          <button 
-            className="control-btn"
-            onClick={() => setIsDatePickerOpen(true)}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
-              <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="2"/>
-              <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2"/>
-              <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2"/>
-            </svg>
-            Date range
-          </button>
-          <button className="control-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" strokeWidth="2"/>
-              <polyline points="7,10 12,15 17,10" stroke="currentColor" strokeWidth="2"/>
-              <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" strokeWidth="2"/>
-            </svg>
-            Export
-          </button>
+          <div className="activity-controls">
+            <button 
+              className="control-btn"
+              onClick={() => setIsDatePickerOpen(true)}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
+                <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="2"/>
+                <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2"/>
+                <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+              Date range
+            </button>
+            <button className="control-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" strokeWidth="2"/>
+                <polyline points="7,10 12,15 17,10" stroke="currentColor" strokeWidth="2"/>
+                <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+              Export
+            </button>
+          </div>
         </div>
 
         {/* Transactions List */}
@@ -250,15 +251,8 @@ export default function RecentActivity({ onRowClick, selectedRowId, onMenuStateC
         
         <div className="card-footer">
           <button 
-            onClick={() => onNavigate?.('All Activity')}
+            onClick={() => onNavigate?.('Activity?from=dashboard')}
             className="view-all-link"
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '0',
-              font: 'inherit'
-            }}
           >
             View all activity
             <svg width="24" height="24" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">

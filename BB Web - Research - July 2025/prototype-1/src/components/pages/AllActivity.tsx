@@ -252,7 +252,7 @@ export default function AllActivity({
         </div>
       </div>
 
-      <div className="content__container all-activity-full-width">
+      <div className="content__container all-activity-full-width" style={{ paddingBottom: '100px' }}>
         {/* Summary Stats */}
         <div className="card" style={{ marginBottom: '24px' }}>
           <div className="card__content" style={{ padding: '24px' }}>

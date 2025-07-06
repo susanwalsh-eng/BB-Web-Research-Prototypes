@@ -35,36 +35,6 @@ export default function PaymentCard({
     return baseClass;
   };
 
-  const getSubtitleText = () => {
-    if (invoices === 0) {
-      return `No ${status.toLowerCase()} invoices`;
-    }
-    
-    // Dynamic descriptions based on status and count
-    const getStatusDescription = () => {
-      switch (status) {
-        case 'OVERDUE':
-          return invoices === 1 ? 'overdue invoice' : 'overdue invoices';
-        case 'DUE':
-          return invoices === 1 ? 'invoice due' : 'invoices due';
-        case 'DRAFTS':
-          return invoices === 1 ? 'draft' : 'drafts';
-        case 'PAID':
-          return invoices === 1 ? 'paid invoice' : 'paid invoices';
-        default:
-          return invoices === 1 ? 'invoice' : 'invoices';
-      }
-    };
-    
-    const description = `${invoices} ${getStatusDescription()}`;
-    
-    if (isActive) {
-      return description;
-    }
-    // Truncate for default state if needed
-    return description.length > 25 ? description.substring(0, 25) + '...' : description;
-  };
-
   return (
     <div 
       className={getCardClass()}
@@ -84,7 +54,7 @@ export default function PaymentCard({
       onKeyUp={() => setIsActive(false)}
       tabIndex={0}
       role="button"
-      aria-label={`Payment ${status.toLowerCase()}: ${amount}, ${invoices} invoice${invoices !== 1 ? 's' : ''}${paymentInfo ? ` and ${paymentInfo}` : ''}`}
+      aria-label={`Payment ${status.toLowerCase()}: ${amount}, ${paymentInfo}`}
     >
       <div className={`payment-card-status ${getStatusClass()}`}>
         {status}
@@ -95,7 +65,7 @@ export default function PaymentCard({
       </div>
       
       <div className="payment-card-description">
-        {getSubtitleText()}
+        {paymentInfo}
       </div>
       
       <div className="payment-card-arrow">

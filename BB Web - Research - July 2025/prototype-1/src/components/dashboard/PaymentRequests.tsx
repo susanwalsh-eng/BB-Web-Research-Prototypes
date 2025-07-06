@@ -40,7 +40,15 @@ export default function PaymentRequests({ onStarClick, onNavigate, visibleCardCo
   const aggregateByStatus = () => {
     const statuses = ['paid', 'overdue', 'due', 'drafts'] as const;
     
-    return statuses.map(status => {
+    // Hard coded descriptions as requested
+    const hardcodedDescriptions = [
+      '5 paid invoices',
+      '5 overdue invoices', 
+      '5 invoices due',
+      '2 drafts created'
+    ];
+    
+    return statuses.map((status, index) => {
       const requests = paymentRequests.filter(request => request.status === status);
       const totalAmount = requests.reduce((sum, request) => sum + request.amount, 0);
       const invoiceCount = requests.length;
@@ -49,7 +57,7 @@ export default function PaymentRequests({ onStarClick, onNavigate, visibleCardCo
         status: status.toUpperCase() as 'PAID' | 'OVERDUE' | 'DUE' | 'DRAFTS',
         amount: formatCurrency(totalAmount),
         invoices: invoiceCount,
-        paymentInfo: invoiceCount > 0 ? `${invoiceCount} payment${invoiceCount !== 1 ? 's' : ''}` : ''
+        paymentInfo: hardcodedDescriptions[index]
       };
     });
   };

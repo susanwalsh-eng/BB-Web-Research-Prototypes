@@ -1,82 +1,132 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import EduCard from './EduCard';
+import TaskCard from './TaskCard';
 
-interface ExploreCard {
+interface TaskCTA {
+  type: 'primary' | 'secondary';
+  text: string;
+  action: string;
+}
+
+interface Task {
   id: string;
-  tag: {
-    text: string;
-    color: string;
-    icon: string;
-  };
+  type: 'approval' | 'reminder' | 'feature' | 'info' | 'draft' | 'due' | 'paid';
+  icon: string;
   title: string;
-  body: string;
-  primaryButton: string;
-  secondaryButton: string;
+  reference?: string;
+  body?: string;
+  amount?: number;
+  status?: 'OVERDUE' | 'PAID' | 'DRAFT' | 'DUE';
+  cta: string[];
+  badge?: {
+    text: string;
+    type: string;
+  };
 }
 
-interface ExploreMonzoBusinessProProps {
-  onActionClick?: (cardId: string, actionType: string) => void;
+interface TasksProps {
+  onActionClick?: (actionId: string, actionType: string) => void;
 }
 
-// Mock data for explore cards
-const exploreCards: ExploreCard[] = [
+// Mock data for tasks
+const mockTasks: Task[] = [
   {
     id: "1",
-    tag: {
-      text: "Quotes",
-      color: "#FDD0EC",
-      icon: "📋"
-    },
-    title: "We now have quotes!",
-    body: "Simple to create and customise, send, chase and pay.",
-    primaryButton: "Create a quote",
-    secondaryButton: "Dismiss"
+    type: "approval",
+    icon: "💰",
+    title: "Approve a payment",
+    reference: "Invoice #271 to Beer for All",
+    amount: 1547.17,
+    cta: ["Approve", "Review"],
+    badge: {
+      text: "URGENT",
+      type: "urgent"
+    }
   },
   {
     id: "2",
-    tag: {
-      text: "Tax Pots",
-      color: "#D4EDDA",
-      icon: "💰"
-    },
-    title: "Always tax-ready",
-    body: "Automatically put a percentage aside for tax and other big bills every time you're paid with Tax Pots.",
-    primaryButton: "Create a Tax Pot",
-    secondaryButton: "Dismiss"
+    type: "reminder",
+    icon: "🔔",
+    title: "Send reminder",
+    reference: "Invoice #268 to Coffee Co",
+    amount: 892.50,
+    cta: ["Send reminder", "Dismiss"],
+    badge: {
+      text: "OVERDUE",
+      type: "overdue"
+    }
   },
   {
     id: "3",
-    tag: {
-      text: "Feature spotlight",
-      color: "#FFE4CC",
-      icon: "🚀"
-    },
-    title: "Deposits are here",
-    body: "Make deposits from your personal account to your business account in seconds.",
-    primaryButton: "Make a deposit",
-    secondaryButton: "Dismiss"
+    type: "feature",
+    icon: "🏦",
+    title: "Set up tax pot",
+    reference: "Automate tax savings",
+    cta: ["Set up", "Learn more"]
   },
   {
     id: "4",
-    tag: {
-      text: "Upgrade",
-      color: "#CCE5FF",
-      icon: "⭐"
-    },
-    title: "Upgrade to Pro",
-    body: "Get advanced features like expense management, reporting, and team collaboration.",
-    primaryButton: "Explore team plan",
-    secondaryButton: "Dismiss"
+    type: "info",
+    icon: "📊",
+    title: "Review expenses",
+    reference: "Monthly expense report ready",
+    cta: ["Review", "Download"]
+  },
+  {
+    id: "5",
+    type: "draft",
+    icon: "📝",
+    title: "Finish draft invoice",
+    reference: "Invoice #270 to Digital Agency",
+    amount: 2400.00,
+    cta: ["Complete", "Delete"],
+    badge: {
+      text: "DRAFT",
+      type: "draft"
+    }
+  },
+  {
+    id: "6",
+    type: "due",
+    icon: "📅",
+    title: "Payment due soon",
+    reference: "Subscription payment in 3 days",
+    amount: 299.99,
+    cta: ["Pay now", "Schedule"],
+    badge: {
+      text: "DUE",
+      type: "due"
+    }
+  },
+  {
+    id: "7",
+    type: "approval",
+    title: "Approve another payment",
+    reference: "Invoice #272 to Pizza Palace",
+    amount: 899.50,
+    cta: ["Approve", "Review details"],
+    icon: "💰",
+  },
+  {
+    id: "8",
+    type: "reminder",
+    status: "OVERDUE",
+    title: "Invoice #1500 overdue",
+    body: "This invoice is awaiting payment.",
+    cta: ["Send reminder", "Review details"],
+    icon: "🔔",
   },
 ];
 
-const BusinessIcon = () => (
+const TaskIcon = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path 
-      d="M5 2.5V5.5H15V2.5H5ZM5 7.5V17.5H15V7.5H5ZM3 2.5C3 1.39543 3.89543 0.5 5 0.5H15C16.1046 0.5 17 1.39543 17 2.5V17.5C17 18.6046 16.1046 19.5 15 19.5H5C3.89543 19.5 3 18.6046 3 17.5V2.5ZM7 9.5H13V11.5H7V9.5ZM7 12.5H13V14.5H7V12.5Z" 
-      fill="currentColor"
+      d="M3 5.5L3 4.5C3 3.39543 3.89543 2.5 5 2.5L15 2.5C16.1046 2.5 17 3.39543 17 4.5L17 5.5M3 5.5C2.17157 5.5 1.5 6.17157 1.5 7L1.5 15C1.5 16.1046 2.39543 17 3.5 17L16.5 17C17.6046 17 18.5 16.1046 18.5 15L18.5 7C18.5 6.17157 17.8284 5.5 17 5.5M3 5.5L17 5.5M7 10L9 12L13 8" 
+      stroke="#2E3D49" 
+      strokeWidth="1.5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -100,28 +150,46 @@ const ChevronRightIcon = () => (
   </svg>
 );
 
-// Helper function to format explore card data for new EduCard component
-const formatExploreCardForEduCard = (card: ExploreCard) => {
+// Helper function to format task data for new TaskCard component
+const formatTaskForNewCard = (task: Task) => {
+  const formatAmount = (amount?: number) => {
+    if (!amount) return '';
+    return `£${amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  };
+
+  let subtitle = task.body || task.reference || '';
+  
+  // Add amount to subtitle if it exists
+  if (task.amount) {
+    subtitle = `${subtitle} for ${formatAmount(task.amount)}`.trim();
+  }
+  
+  // Add status to subtitle if it exists
+  if (task.status) {
+    subtitle = `${subtitle} - ${task.status}`.trim();
+  }
+  
+  // Clean up subtitle if it starts with " for" or " - "
+  subtitle = subtitle.replace(/^(\s*for\s*|\s*-\s*)/, '');
+
   return {
-    badge: {
-      text: card.tag.text,
-      color: card.tag.color,
-      icon: card.tag.icon
-    },
-    title: card.title,
-    description: card.body,
+    icon: task.icon,
+    title: task.title,
+    subtitle: subtitle,
+    badge: task.badge,
     primaryButton: {
-      text: card.primaryButton,
+      text: task.cta[0] || 'Action',
       onClick: () => {}
     },
     secondaryButton: {
-      text: card.secondaryButton,
+      text: task.cta[1] || 'Dismiss',
       onClick: () => {}
     }
   };
 };
 
-export default function ExploreMonzoBusinessPro({ onActionClick }: ExploreMonzoBusinessProProps) {
+// Tasks Component
+export default function Tasks({ onActionClick }: TasksProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -163,16 +231,16 @@ export default function ExploreMonzoBusinessPro({ onActionClick }: ExploreMonzoB
     }
   };
 
-  const handleActionClick = (cardId: string, actionType: string) => {
-    console.log(`Explore action: ${actionType} for ${cardId}`);
-    onActionClick?.(cardId, actionType);
+  const handleActionClick = (taskId: string, actionType: string) => {
+    console.log(`Action: ${actionType} for ${taskId}`);
+    onActionClick?.(taskId, actionType);
   };
 
   return (
     <div className="card">
       <div className="card__header">
         <h2 className="card__title">
-          <span>Explore Monzo Business Pro</span>
+          <span>Tasks</span>
         </h2>
         <div className="tasks__controls">
           <button
@@ -204,23 +272,27 @@ export default function ExploreMonzoBusinessPro({ onActionClick }: ExploreMonzoB
           className="tasks__container"
         >
           <div className="tasks__cards">
-            {exploreCards.map((card) => {
-              const eduCardData = formatExploreCardForEduCard(card);
+            {mockTasks.map((task) => {
+              const taskData = formatTaskForNewCard(task);
               return (
-                <EduCard
-                  key={card.id}
-                  badge={eduCardData.badge}
-                  title={eduCardData.title}
-                  description={eduCardData.description}
+              <TaskCard
+                key={task.id}
+                  icon={taskData.icon}
+                  title={taskData.title}
+                  subtitle={taskData.subtitle}
+                  badge={taskData.badge ? {
+                    text: taskData.badge.text,
+                    type: taskData.badge.type as 'overdue' | 'due' | 'paid' | 'draft' | 'urgent' | 'warning' | 'info'
+                  } : undefined}
                   primaryButton={{
-                    text: eduCardData.primaryButton.text,
-                    onClick: () => handleActionClick(card.id, eduCardData.primaryButton.text.toLowerCase().replace(/\s+/g, '-'))
+                    text: taskData.primaryButton.text,
+                    onClick: () => handleActionClick(task.id, taskData.primaryButton.text.toLowerCase().replace(' ', '-'))
                   }}
                   secondaryButton={{
-                    text: eduCardData.secondaryButton.text,
-                    onClick: () => handleActionClick(card.id, eduCardData.secondaryButton.text.toLowerCase().replace(/\s+/g, '-'))
+                    text: taskData.secondaryButton.text,
+                    onClick: () => handleActionClick(task.id, taskData.secondaryButton.text.toLowerCase().replace(' ', '-'))
                   }}
-                />
+              />
               );
             })}
           </div>

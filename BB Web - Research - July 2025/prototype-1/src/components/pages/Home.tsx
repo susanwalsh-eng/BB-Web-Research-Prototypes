@@ -99,16 +99,16 @@ export default function Home({
             </div>
             
             <div className="dashboard-col-full">
-            <ScheduledPayments 
-              onRowClick={onPaymentRowClick}
-              selectedRowId={selectedPaymentId}
-              onMenuStateChange={onMenuStateChange}
-              onNavigate={onNavigate}
+              <ScheduledPayments 
+                onRowClick={onPaymentRowClick}
+                selectedRowId={selectedPaymentId}
+                onMenuStateChange={onMenuStateChange}
+                onNavigate={onNavigate}
               onStarClick={onScheduledPaymentsStarClick}
               visibleCardCount={scheduledPaymentsVisibleCardCount}
               isDisabled={scheduledPaymentsDisabled}
               isActive={scheduledPaymentsActive}
-            />
+              />
             </div>
             
             <div className="dashboard-col-full">

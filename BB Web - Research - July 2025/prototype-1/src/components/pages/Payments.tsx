@@ -194,12 +194,26 @@ export default function Payments({ onRowClick, selectedRowId, onNavigate }: Paym
 
   return (
     <div className="content-left">
-      <div className="content__container" style={{ paddingBottom: '100px' }}>
-        {/* Page Header */}
-        <div className="payments-header">
-          <h1 className="payments-title">Payments</h1>
-          <h2 className="payments-subtitle">All payment tools</h2>
+      {/* Page Header */}
+      <div className="all-activity-header">
+        <div className="all-activity-header-container">
+          {/* Page Title Row */}
+          <div className="all-activity-title-row">
+            <h1 className="all-activity-title">Payments</h1>
+          </div>
         </div>
+      </div>
+
+      {/* Content Container */}
+      <div className="all-activity-full-width">
+        <div className="content__container" style={{ 
+          maxWidth: '1228px', 
+          margin: '0', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '32px', 
+          paddingBottom: '100px' 
+        }}>
 
         {/* Payment Tool Cards */}
         <div className="payment-tools-section">
@@ -328,6 +342,7 @@ export default function Payments({ onRowClick, selectedRowId, onNavigate }: Paym
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

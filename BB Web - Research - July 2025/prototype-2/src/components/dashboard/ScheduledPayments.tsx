@@ -230,7 +230,7 @@ export default function ScheduledPayments({ onRowClick, selectedRowId, onMenuSta
           <div className="payments-summary">
             <div className="summary-info">
               <span className="info-icon">ⓘ</span>
-              Estimated total payments: 5 payments due in next 30 days
+              Estimated scheduled payments: 5 payments due in the next 30 days
             </div>
             <div className="summary-amount">£11,587.52</div>
           </div>

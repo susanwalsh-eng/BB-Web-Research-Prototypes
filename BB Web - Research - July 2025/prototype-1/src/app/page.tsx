@@ -119,7 +119,7 @@ export default function Dashboard() {
     } else {
       // When closing the right sidebar, open the left sidebar back up only if no other sidebar is visible
       if (!paymentRequestsRightSidebarVisible) {
-        setSidebarCollapsed(false);
+      setSidebarCollapsed(false);
       }
     }
   };
@@ -256,6 +256,9 @@ export default function Dashboard() {
     setSelectedScheduledPaymentId(undefined);
     setSidePanelData(null);
     setSidePanelPosition(0);
+    
+    // Scroll to top when navigating to a new page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const renderCurrentPage = () => {
@@ -321,48 +324,48 @@ export default function Dashboard() {
             contextualContent={
               <div className="right-sidebar">
                 {paymentRequestsRightSidebarVisible && (
-                  <div className="right-sidebar__content">
-                    <ContextualCardStack
-                      cards={[
-                        {
-                          id: 'overdue-invoices',
-                          type: 'warning',
-                          icon: '😬',
-                          title: '5 invoices are overdue',
-                          description: 'Send a reminder to your customers to pay their invoices to sure up your cashflow for June.',
-                          action: {
-                            text: 'Send reminders',
-                            onClick: () => console.log('Send reminders clicked')
-                          },
-                          isExpanded: true
+                <div className="right-sidebar__content">
+                  <ContextualCardStack
+                    cards={[
+                      {
+                        id: 'overdue-invoices',
+                        type: 'warning',
+                        icon: '😬',
+                        title: '5 invoices are overdue',
+                        description: 'Send a reminder to your customers to pay their invoices to sure up your cashflow for June.',
+                        action: {
+                          text: 'Send reminders',
+                          onClick: () => console.log('Send reminders clicked')
                         },
-                        {
-                          id: 'invoice-1496',
-                          type: 'urgent',
-                          icon: '🟠',
-                          title: 'Invoice #1496 overdue by 14 days',
-                          description: 'This invoice is still awaiting payment from Chase Shop International and needs immediate attention.',
-                          action: {
-                            text: 'Send reminder',
-                            onClick: () => console.log('Send reminder for invoice #1496')
-                          },
-                          isExpanded: false
+                        isExpanded: true
+                      },
+                      {
+                        id: 'invoice-1496',
+                        type: 'urgent',
+                        icon: '🟠',
+                        title: 'Invoice #1496 overdue by 14 days',
+                        description: 'This invoice is still awaiting payment from Chase Shop International and needs immediate attention.',
+                        action: {
+                          text: 'Send reminder',
+                          onClick: () => console.log('Send reminder for invoice #1496')
                         },
-                        {
-                          id: 'finish-drafts',
-                          type: 'feature',
-                          icon: '✏️',
-                          title: 'Finish your drafts',
-                          description: '5 invoices are still in draft status and need to be finished for you to be able to send them to customers.',
-                          action: {
-                            text: 'Continue drafts',
-                            onClick: () => console.log('Continue drafts clicked')
-                          },
-                          isExpanded: false
-                        }
-                      ]}
-                      onCardClose={(cardId) => {
-                        console.log(`Card ${cardId} closed`);
+                        isExpanded: false
+                      },
+                      {
+                        id: 'finish-drafts',
+                        type: 'feature',
+                        icon: '✏️',
+                        title: 'Finish your drafts',
+                        description: '5 invoices are still in draft status and need to be finished for you to be able to send them to customers.',
+                        action: {
+                          text: 'Continue drafts',
+                          onClick: () => console.log('Continue drafts clicked')
+                        },
+                        isExpanded: false
+                      }
+                    ]}
+                    onCardClose={(cardId) => {
+                      console.log(`Card ${cardId} closed`);
                         const newCount = Math.max(0, paymentRequestsVisibleCardCount - 1);
                         setPaymentRequestsVisibleCardCount(newCount);
                         if (newCount === 0) {
@@ -414,9 +417,9 @@ export default function Dashboard() {
                             setSidebarCollapsed(false);
                           }
                         }
-                      }}
-                    />
-                  </div>
+                    }}
+                  />
+                </div>
                 )}
               </div>
             }

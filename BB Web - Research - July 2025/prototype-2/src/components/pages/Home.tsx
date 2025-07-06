@@ -1,11 +1,13 @@
 'use client';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import ActionButtons from '@/components/dashboard/ActionButtons';
-import AccountBalance from '@/components/dashboard/AccountBalance';
+import UnifiedAccountBalance from '@/components/dashboard/UnifiedAccountBalance';
+import Pots from '@/components/dashboard/Pots';
 import PaymentRequests from '@/components/dashboard/PaymentRequests';
 import ScheduledPayments from '@/components/dashboard/ScheduledPayments';
 import RecentActivity from '@/components/dashboard/RecentActivity';
 import CashFlow from '@/components/dashboard/CashFlow';
+import ExploreMonzoBusinessPro from '@/components/ui/ExploreMonzoBusinessPro';
 
 interface Payment {
   id: string;
@@ -37,7 +39,7 @@ interface HomeProps {
   onTransactionRowClick: (transaction: Transaction) => void;
   onMenuStateChange: (open: boolean) => void;
   onNavigate?: (page: string) => void;
-  suggestedActionsContent?: React.ReactNode;
+  tasksContent?: React.ReactNode;
 }
 
 export default function Home({
@@ -48,7 +50,7 @@ export default function Home({
   onTransactionRowClick,
   onMenuStateChange,
   onNavigate,
-  suggestedActionsContent
+  tasksContent
 }: HomeProps) {
   return (
     <div className="main-layout">
@@ -62,15 +64,15 @@ export default function Home({
       
       <div className="main-layout-content main-layout-content--full-width">
         <div className="left-column">
-          <AccountBalance 
+          <UnifiedAccountBalance 
             onAccountDetailsClick={onAccountDetailsClick} 
             onNavigate={onNavigate}
           />
           
-          {/* Suggested Actions Section */}
-          {suggestedActionsContent && (
+          {/* Tasks Section */}
+          {tasksContent && (
             <div className="dashboard-col-full">
-              {suggestedActionsContent}
+              {tasksContent}
             </div>
           )}
           
@@ -98,6 +100,38 @@ export default function Home({
                 selectedRowId={selectedTransactionId}
                 onMenuStateChange={onMenuStateChange}
                 onNavigate={onNavigate}
+              />
+            </div>
+            
+            <div className="dashboard-col-full">
+              <Pots onNavigate={onNavigate} />
+            </div>
+            
+            <div className="dashboard-col-full">
+              <ExploreMonzoBusinessPro 
+                onActionClick={(cardId: string, actionType: string) => {
+                  console.log(`Explore action: ${actionType} for ${cardId}`);
+                  // Handle different explore actions
+                  switch (actionType) {
+                    case 'create-a-quote':
+                      console.log('Create a quote action');
+                      break;
+                    case 'create-a-tax-pot':
+                      console.log('Create a tax pot action');
+                      break;
+                    case 'make-a-deposit':
+                      console.log('Make a deposit action');
+                      break;
+                    case 'explore-team-plan':
+                      console.log('Explore team plan action');
+                      break;
+                    case 'dismiss':
+                      console.log('Dismiss action');
+                      break;
+                    default:
+                      console.log('Unknown explore action type:', actionType);
+                  }
+                }}
               />
             </div>
           </div>

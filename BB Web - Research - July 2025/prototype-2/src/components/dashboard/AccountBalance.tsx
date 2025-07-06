@@ -45,7 +45,10 @@ export default function AccountBalance({ onAccountDetailsClick, onNavigate }: Ac
           <div className="balance-main">
             {formattedBalance}
           </div>
-          <div className="balance-currency">Balance in GBP</div>
+          <div className="balance-currency">
+            <span style={{ color: '#34C759', fontWeight: '500' }}>+ £125.65 since yesterday</span>
+            <span> • Balance in GDP</span>
+          </div>
         </div>
       </div>
 
@@ -63,8 +66,8 @@ export default function AccountBalance({ onAccountDetailsClick, onNavigate }: Ac
         </div>
         
         <button 
-          onClick={() => onNavigate?.('All Activity')}
-          className="view-activity"
+          onClick={() => onNavigate?.('Activity?from=dashboard')}
+          className="view-all-link"
           style={{
             background: 'none',
             border: 'none',

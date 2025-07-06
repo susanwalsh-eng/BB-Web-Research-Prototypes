@@ -35,15 +35,6 @@ export default function PaymentCard({
     return baseClass;
   };
 
-  const getSubtitleText = () => {
-    if (isActive) {
-      return `${invoices} invoice${invoices !== 1 ? 's' : ''} • ${paymentInfo}`;
-    }
-    // Truncate for default state
-    const fullText = `${invoices} invoice${invoices !== 1 ? 's' : ''} • ${paymentInfo}`;
-    return fullText.length > 25 ? fullText.substring(0, 25) + '...' : fullText;
-  };
-
   return (
     <div 
       className={getCardClass()}
@@ -63,7 +54,7 @@ export default function PaymentCard({
       onKeyUp={() => setIsActive(false)}
       tabIndex={0}
       role="button"
-      aria-label={`Payment ${status.toLowerCase()}: ${amount}, ${invoices} invoice${invoices !== 1 ? 's' : ''}${paymentInfo ? ` and ${paymentInfo}` : ''}`}
+      aria-label={`Payment ${status.toLowerCase()}: ${amount}, ${paymentInfo}`}
     >
       <div className={`payment-card-status ${getStatusClass()}`}>
         {status}
@@ -74,7 +65,7 @@ export default function PaymentCard({
       </div>
       
       <div className="payment-card-description">
-        {getSubtitleText()}
+        {paymentInfo}
       </div>
       
       <div className="payment-card-arrow">

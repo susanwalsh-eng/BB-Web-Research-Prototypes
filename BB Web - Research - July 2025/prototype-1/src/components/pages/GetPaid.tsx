@@ -196,9 +196,7 @@ export default function GetPaid({ onRowClick, selectedRowId, onNavigate, initial
     });
   }, [filteredInvoices, sortBy]);
 
-  const handleBackClick = () => {
-    onNavigate?.('Home');
-  };
+
 
   const handleTabClick = (tabId: string) => {
     setActiveTab(tabId);
@@ -299,17 +297,9 @@ export default function GetPaid({ onRowClick, selectedRowId, onNavigate, initial
 
   return (
     <div className="content-left">
-      {/* Page Header with Back Button */}
+      {/* Page Header without Back Button */}
       <div className="all-activity-header">
         <div className="all-activity-header-container">
-          {/* Back Button */}
-          <button className="back-button" onClick={handleBackClick}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 12H5m0 0l7 7m-7-7l7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Back
-          </button>
-          
           {/* Page Title Row */}
           <div className="all-activity-title-row">
             <h1 className="all-activity-title">Get Paid</h1>
@@ -319,7 +309,14 @@ export default function GetPaid({ onRowClick, selectedRowId, onNavigate, initial
 
       {/* Content Container */}
       <div className="all-activity-full-width">
-        <div className="content__container">
+        <div className="content__container" style={{ 
+          maxWidth: '1228px', 
+          margin: '0', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '32px', 
+          paddingBottom: '100px' 
+        }}>
           {/* Request Payment Section */}
           <div className="action-cards-section">
             <div className="action-cards-container">

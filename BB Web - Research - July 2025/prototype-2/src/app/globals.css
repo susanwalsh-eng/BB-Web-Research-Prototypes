@@ -703,7 +703,7 @@ html, body {
 }
 
 .card__header {
-  padding: 24px 24px 0;
+  padding: 20px 20px 15px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -725,7 +725,7 @@ html, body {
 
 
 .card__content {
-  padding: 20px 24px;
+  padding: 0 20px 20px 20px; /* Remove top padding, keep sides and bottom */
 }
 
 .card-footer {
@@ -772,9 +772,17 @@ html, body {
   text-decoration: underline;
 }
 
+/* Unified Account Balance Wrapper */
+.unified-account-balance-wrapper {
+  width: 100%;
+}
+
 /* Account Balance */
 .balance-card {
-  padding: 24px;
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
+  background: #FFFFFF;
+  border-bottom: none;
 }
 
 .balance-header {
@@ -931,7 +939,7 @@ html, body {
   position: relative;
   background-color: var(--white);
   border-radius: 8px;
-  padding: 16px;
+  padding: 20px;
   text-align: left;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -940,9 +948,9 @@ html, body {
 
 .payment-card:hover {
   background-color: rgba(33, 143, 183, 0.1);
-  border: 1px solid var(--gray-200);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
+  border-color: #E5E7EB;
 }
 
 .payment-card::after {
@@ -980,6 +988,7 @@ html, body {
   background-color: rgba(33, 143, 183, 0.1);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
+  border-color: #E5E7EB;
 }
 
 .payment-card-new--active {
@@ -1509,7 +1518,7 @@ html, body {
   justify-content: space-between;
   align-items: center;
   margin-top: 16px;
-  padding: 16px 8px;
+  padding: 16px 24px;
   background: #f8f9fa;
   border-radius: 8px;
 }
@@ -1538,6 +1547,8 @@ html, body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  border-bottom: 2px solid #F2F8F3;
+  padding-bottom: 16px;
 }
 
 .cash-flow-item {
@@ -1618,6 +1629,25 @@ html, body {
 }
 
 /* Activity Controls */
+/* Activity Controls Row - Keep filter chips and controls on same row */
+.activity-controls-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.activity-controls-wrapper .filter-chips {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.activity-controls-wrapper .activity-controls {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
 .activity-controls {
   display: flex;
   gap: 12px;
@@ -1648,6 +1678,8 @@ html, body {
   flex-direction: column;
   gap: 4px;
   margin: 16px 0;
+  border-bottom: 2px solid #F2F8F3;
+  padding-bottom: 16px;
 }
 
 .activity-row {
@@ -2934,7 +2966,7 @@ html, body {
 .dashboard-grid {
   display: grid;
   gap: 24px;
-  margin-top: 24px;
+  margin-top: 0px;
   position: relative; /* Make this the positioning context for right sidebar */
 }
 
@@ -3357,8 +3389,10 @@ html, body {
 }
 
 .action-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
+  border-color: #E5E7EB;
 }
 
 .action-card:focus {
@@ -3400,38 +3434,43 @@ html, body {
   color: var(--primary-blue);
 }
 
-/* Tab Bar */
+/* Tab Bar - Underline Style */
 .tab-bar {
   margin-bottom: 24px;
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .tab-bar__container {
   display: flex;
   gap: 0;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .tab-bar__tab {
   background: none;
   border: none;
+  border-radius: 0;
   padding: 16px 24px;
   font-size: 16px;
-  font-weight: 500;
-  color: var(--gray-600);
+  font-weight: 600;
+  color: #5E6A75;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease-in-out;
   border-bottom: 2px solid transparent;
   position: relative;
+  white-space: nowrap;
 }
 
 .tab-bar__tab:hover {
-  color: var(--black);
+  color: #218fb7;
 }
 
 .tab-bar__tab--active {
-  font-weight: 700;
-  color: var(--black);
-  border-bottom-color: var(--primary-blue);
+  font-weight: 600;
+  color: #218fb7;
+  border-bottom-color: #218fb7;
+  border-radius: 0;
 }
 
 /* Filter Pills Section */
@@ -3834,8 +3873,10 @@ html, body {
 }
 
 .payment-tool-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
+  border-color: #E5E7EB;
 }
 
 .payment-tool-card:focus {
@@ -3901,7 +3942,7 @@ html, body {
   position: relative;
   background-color: var(--white);
   border-radius: 12px;
-  padding: 16px;
+  padding: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -3919,6 +3960,7 @@ html, body {
   background-color: rgba(33, 143, 183, 0.1);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
+  border-color: #E5E7EB;
 }
 
 .recent-recipient-card:focus {
@@ -4028,10 +4070,14 @@ html, body {
   border-radius: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  border-bottom: 2px solid #F2F8F3;
+  padding-bottom: 16px;
 }
 
 .scheduled-payments-table {
   width: 100%;
+  border-bottom: 2px solid #F2F8F3;
+  padding-bottom: 16px;
 }
 
 .scheduled-payments-table__header {
@@ -4039,7 +4085,6 @@ html, body {
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 24px;
   padding: 20px 24px;
-  background-color: var(--gray-50);
   border-bottom: 1px solid var(--gray-200);
 }
 
@@ -4416,8 +4461,10 @@ html, body {
 }
 
 .suggested-action-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
+  border-color: #E5E7EB;
 }
 
 .suggested-action-card__header {
@@ -4691,7 +4738,7 @@ html, body {
 .left-column {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 20px;
   overflow: visible; /* Allow content to flow naturally */
   position: relative;
   min-width: 0; /* Allow content to shrink */
@@ -4710,7 +4757,11 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 298px; /* Align with payment requests section in new layout */
+  margin-top: 263px;
+}
+
+.right-column .right-sidebar__content--scheduled-payments {
+  margin-top: 596px !important;
 }
 
 /* Adjust dashboard header for new layout */
@@ -4737,3 +4788,6539 @@ html, body {
 .main-layout .dashboard-header-block__inner--full-width {
   max-width: 1228px;
 }
+
+/* Tasks Component Styles */
+.tasks__controls {
+  display: flex;
+  gap: 8px;
+}
+
+.tasks__control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--white);
+  border: 1px solid var(--primary-blue);
+  border-radius: 50%;
+  color: var(--primary-blue);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.tasks__control-btn:hover:not(.tasks__control-btn--disabled) {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.tasks__control-btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: var(--gray-100);
+  color: var(--gray-400);
+  border-color: var(--gray-200);
+}
+
+.tasks__control-btn svg {
+  stroke: currentColor;
+}
+
+.tasks__container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tasks__container::-webkit-scrollbar {
+  display: none;
+}
+
+.tasks__cards {
+  display: flex;
+  gap: 20px;
+  padding: 4px;
+  min-width: max-content;
+  align-items: stretch;
+}
+
+.task-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 300px;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.task-card:nth-child(2) {
+  background: var(--white) !important;
+}
+
+.task-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border-color: #E5E7EB;
+}
+
+.task-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.task-card__icon {
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-card__status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.task-card__content {
+  margin-bottom: 20px;
+}
+
+.task-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.task-card__body {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.task-card__amount {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.task-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.task-card__btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  flex: 1;
+  min-width: 0;
+}
+
+.task-card__btn--primary {
+  background-color: var(--primary-blue);
+  color: var(--white);
+}
+
+.task-card__btn--primary:hover {
+  background-color: #1976a3;
+}
+
+.task-card__btn--secondary {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-200);
+}
+
+.task-card__btn--secondary:hover {
+  background-color: var(--gray-200);
+  color: var(--gray-800);
+}
+
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .task-card {
+    min-width: 280px;
+    padding: 16px;
+  }
+  
+  .task-card__actions {
+    flex-direction: column;
+  }
+  
+  .task-card__btn {
+    flex: none;
+  }
+}
+
+/* Other Currency Accounts Styles */
+.other-currency-accounts {
+  background: #FFFFFF;
+  border-radius: 0 0 20px 20px;
+  margin-top: 5px;
+  padding: 24px;
+  width: 100%;
+}
+
+.other-currency-accounts__title {
+  font-weight: 700;
+  font-size: 20px;
+  color: #001B2E;
+  margin-bottom: 16px;
+}
+
+.other-currency-accounts__cards {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.foreign-account-card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #E5E7EB;
+  min-width: 280px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.foreign-account-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border-color: #E5E7EB;
+}
+
+.foreign-account-card:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: var(--primary-blue);
+  ring-opacity: 0.5;
+}
+
+.foreign-account-card__content {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.foreign-account-card__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.foreign-account-card__flag {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.foreign-account-card__title {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gray-900);
+  line-height: 1.4;
+}
+
+.foreign-account-card__balance {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.foreign-account-card__subtext {
+  font-size: 14px;
+  color: var(--gray-500);
+}
+
+.foreign-account-card__chevron {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #218fb7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.foreign-account-card__chevron--visible {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .other-currency-accounts__cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .foreign-account-card {
+    min-width: unset;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .foreign-account-card__balance {
+    font-size: 22px;
+  }
+}
+
+/* Pots Section Styles */
+.pots__total-balance {
+  font-weight: 400;
+  color: #6B7280;
+  margin-left: 8px;
+}
+
+.pots__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #F2F8F3;
+  padding-bottom: 16px;
+}
+
+.pot-card {
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 24px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pot-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border-color: #E5E7EB;
+}
+
+.pot-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.pot-card__icon {
+  font-size: 48px;
+  margin-bottom: 0;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pot-card__content {
+  flex: 1;
+  width: 100%;
+  padding-right: 32px;
+}
+
+.pot-card__name {
+  font-weight: 600;
+  font-size: 16px;
+  color: #111827;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.pot-card__balance {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.pot-card__subtext {
+  font-size: 14px;
+  color: #6B7280;
+  line-height: 1.4;
+}
+
+.pot-card__chevron {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #218fb7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.pot-card__chevron--visible {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .pots__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .pot-card {
+    padding: 20px;
+    min-height: 140px;
+  }
+  
+  .pot-card__balance {
+    font-size: 28px;
+  }
+}
+
+/* EduCard Component Styles */
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 300px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* New TaskCard Component Styles */
+.task-card-new {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  min-height: 200px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  flex: 0 0 320px;
+}
+
+
+
+.task-card-new__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.task-card-new__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.task-card-new__title {
+  font-size: 19px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.task-card-new__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.task-card-new__subtitle {
+  font-size: 16px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.task-card-new__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.task-card-new__button {
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label */
+}
+
+.task-card-new__button--primary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.task-card-new__button--primary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Tasks Container - Ensure Equal Heights */
+.tasks__cards {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 4px;
+  scroll-behavior: smooth;
+  align-items: stretch;
+}
+
+.tasks__cards .task-card-new {
+  flex: 0 0 320px;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tasks__cards .task-card-new .task-card-new__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tasks__cards .task-card-new .task-card-new__actions {
+  margin-top: auto;
+}
+
+/* EduCard Component Styles */
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 300px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+ 
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* COMPREHENSIVE STYLING UPDATES */
+/* =========================== */
+
+/* GLOBAL BUTTON STYLING */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn,
+.pots__view-all,
+.button-ui,
+.action-btn,
+.task-card-new__button,
+.edu-card__button,
+.payment-tool-card,
+.recent-recipient-card,
+.contextual-card__action-btn,
+.add-btn,
+.balance-btn,
+.control-btn,
+.task-card__btn,
+.tasks__control-btn,
+.side-panel__edit-btn,
+.side-panel__cancel-btn,
+.download-statements-btn,
+.preset-btn,
+.filter-chip,
+.filter-pill,
+.payments-filter-pill,
+.action-card {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+}
+
+/* Ensure all buttons have hover effects */
+.card__footer a:hover,
+.card__footer button:hover,
+.view-all-link:hover,
+.view-all-btn:hover,
+.pots__view-all:hover,
+.button-ui:hover,
+.action-btn:hover,
+.task-card-new__button:hover,
+.edu-card__button:hover,
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.contextual-card__action-btn:hover,
+.add-btn:hover,
+.balance-btn:hover,
+.control-btn:hover,
+.task-card__btn:hover,
+.tasks__control-btn:hover,
+.side-panel__edit-btn:hover,
+.side-panel__cancel-btn:hover,
+.download-statements-btn:hover,
+.preset-btn:hover,
+.filter-chip:hover,
+.filter-pill:hover,
+.payments-filter-pill:hover,
+.tab-bar__tab:hover,
+.action-card:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+/* Primary blue "View all" buttons */
+.view-all-link,
+.view-all-btn {
+  background-color: #218fb7 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.view-all-link:hover,
+.view-all-btn:hover {
+  background-color: #1a7a9a !important;
+}
+
+/* Tasks container buttons - remove border from secondary, apply secondary styling to primary */
+.tasks__control-btn {
+  border: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.tasks__control-btn:hover {
+  background-color: rgba(33, 143, 183, 0.1) !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background-color: transparent !important;
+  color: #218fb7 !important;
+}
+
+/* TASKS CARDS STYLING (.task-card-new) */
+.task-card-new {
+  width: 480px !important;
+  min-height: 200px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 20px !important;
+  padding: 24px !important;
+  background: white !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none;
+}
+
+
+
+.task-card-new__icon {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 8px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.task-card-new__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.task-card-new__title {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #112231 !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+  flex: 1 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.task-card-badge {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.task-card-badge--overdue {
+  background-color: var(--warning-orange);
+  color: var(--white);
+}
+
+.task-card-badge--due {
+  background-color: var(--gray-600);
+  color: var(--white);
+}
+
+.task-card-badge--paid {
+  background-color: var(--success-green);
+  color: var(--white);
+}
+
+.task-card-badge--draft {
+  background-color: var(--gray-300);
+  color: var(--gray-700);
+}
+
+.task-card-badge--urgent {
+  background-color: #ef4444;
+  color: var(--white);
+}
+
+.task-card-badge--warning {
+  background-color: var(--warning-orange);
+  color: var(--white);
+}
+
+.task-card-badge--info {
+  background-color: var(--primary-blue);
+  color: var(--white);
+}
+
+.task-card-new__subtitle {
+  font-size: 14px !important;
+  color: #75817e !important;
+  margin: 0 0 12px 0 !important;
+  line-height: 1.4 !important;
+}
+
+.task-card-new__content {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.task-card-new__content p {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  color: #75817e !important;
+  margin: 0 !important;
+}
+
+.task-card-new__actions {
+  display: flex !important;
+  gap: 12px !important;
+  margin-top: auto !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  flex: none !important;
+  width: auto !important;
+}
+
+.task-card-new__button--primary {
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--primary:hover {
+  background-color: rgba(33, 143, 183, 0.1) !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  border: none !important;
+}
+
+.task-card-new__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1) !important;
+}
+
+/* Tasks Container - Equal Heights */
+.tasks__cards {
+  display: flex !important;
+  gap: 20px !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth !important;
+  align-items: stretch !important;
+}
+
+.tasks__cards .task-card-new {
+  flex: 0 0 480px !important;
+  height: auto !important;
+  min-height: 200px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* EXPLORE MONZO BUSINESS PRO STYLING */
+.edu-card {
+  width: 480px !important;
+  min-height: 200px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 20px !important;
+  padding: 24px !important;
+  background: white !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+}
+
+/* Remove hover state from entire edu-card container */
+.edu-card:hover {
+  /* Remove all hover effects */
+}
+
+.edu-card__title {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: #112231 !important;
+  margin: 0 0 12px 0 !important;
+  line-height: 1.3 !important;
+}
+
+.edu-card__description {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  color: #75817e !important;
+  margin: 0 0 20px 0 !important;
+  flex: 1 !important;
+}
+
+.edu-card__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button:hover {
+  background-color: #1a7a9a !important;
+  transform: translateY(-1px) !important;
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7 !important;
+  color: white !important;
+  border-color: #218fb7 !important;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a !important;
+  border-color: #1a7a9a !important;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1) !important;
+}
+
+/* Remove icon from container title */
+.tasks__container h2::before,
+.edu-cards__container h2::before {
+  display: none !important;
+}
+
+/* PAYMENT REQUEST CARDS FIX */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) !important;
+  border: none !important;
+}
+
+.payment-card-new:hover {
+  background-color: rgba(33, 143, 183, 0.1) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) !important;
+  border: none !important;
+}
+
+/* RESPONSIVE UPDATES */
+@media (max-width: 768px) {
+  .task-card-new {
+    width: 320px !important;
+    flex: 0 0 320px !important;
+  }
+  
+  .edu-card {
+    width: 320px !important;
+    flex: 0 0 320px !important;
+  }
+  
+  .tasks__cards {
+    gap: 16px !important;
+  }
+  
+  .task-card-new__button {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+  }
+  
+  .edu-card__button {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .tasks__cards {
+    gap: 16px;
+  }
+  
+  .tasks__cards .task-card-new {
+    flex: 0 0 280px;
+  }
+  
+  .task-card-new__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .edu-card__button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* =========================== */
+/* UNIFIED CURSOR PROMPT FIXES */
+/* =========================== */
+
+/* STANDARDIZED ACTION BUTTON BEHAVIOR */
+.action-btn--secondary,
+.balance-actions .balance-btn,
+.action-buttons .action-btn,
+.tasks__controls .tasks__control-btn {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 999px !important;
+  width: auto !important;
+  flex: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover states - text and border turn primary blue */
+.action-btn.action-btn--secondary:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.balance-actions .balance-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-buttons .action-btn:hover,
+.tasks__controls .tasks__control-btn:hover {
+  color: white !important;
+  background-color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.action-btn.action-btn--secondary:hover .action-btn__icon path,
+.action-btn.action-btn--secondary:hover .action-btn__icon [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.balance-actions .balance-btn:hover .balance-btn-icon path,
+.balance-actions .balance-btn:hover .balance-btn-icon [stroke],
+.balance-actions .balance-btn:hover svg path,
+.balance-actions .balance-btn:hover svg [stroke] {
+  stroke: white !important;
+  fill: white !important;
+}
+
+.action-buttons .action-btn:hover .action-btn__icon path,
+.action-buttons .action-btn:hover .action-btn__icon [stroke],
+.action-buttons .action-btn:hover svg path,
+.action-buttons .action-btn:hover svg [stroke],
+.tasks__controls .tasks__control-btn:hover svg path {
+  stroke: white !important;
+  fill: white !important;
+}
+
+/* Container alignment */
+.action-buttons,
+.balance-actions,
+.tasks__controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* TASKS CONTROLS SPECIFIC STYLING */
+.tasks__controls .tasks__control-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border: 1px solid #218fb7 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Remove toggle/click states - always return to default */
+.tasks__control-btn:active,
+.tasks__control-btn:focus,
+.tasks__control-btn--active {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+  transform: none !important;
+}
+
+.tasks__control-btn:not(:hover):not(:active) {
+  background: transparent !important;
+  color: inherit !important;
+  border: 1px solid #218fb7 !important;
+}
+
+/* ACTION BUTTON ALIGNMENT - Ensure horizontal alignment */
+.action-buttons,
+.action-buttons__container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.action-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Prevent vertical shifts on state changes */
+.action-btn:hover,
+.action-btn:focus,
+.action-btn:active,
+.action-btn--disabled {
+  transform: none !important;
+  min-height: 44px !important;
+  padding: 10px 16px !important;
+}
+
+/* Icon-only buttons */
+.action-btn--icon {
+  min-width: 44px !important;
+  padding: 10px !important;
+}
+
+/* CONSISTENT CARD BORDER RADIUS */
+.payment-tool-card,
+.recent-recipient-card,
+.action-card {
+  border-radius: 16px !important;
+}
+
+/* VIEW ALL LINK STYLING */
+.view-all-link {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+.view-all-link:hover {
+  background: none !important;
+  background-color: transparent !important;
+  color: #218fb7 !important;
+  text-decoration: underline !important;
+}
+
+/* VIEW ACTIVITY LINK STYLING */
+.view-activity {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.payment-tool-card:hover,
+.recent-recipient-card:hover,
+.action-card:hover,
+.payment-tool-card:focus,
+.recent-recipient-card:focus,
+.action-card:focus {
+  border-radius: 16px !important;
+}
+
+/* Ensure consistent application across all states */
+.payment-tool-card,
+.payment-tool-card:hover,
+.payment-tool-card:focus,
+.payment-tool-card:active {
+  border-radius: 16px !important;
+}
+
+.recent-recipient-card,
+.recent-recipient-card:hover,
+.recent-recipient-card:focus,
+.recent-recipient-card:active {
+  border-radius: 16px !important;
+}
+
+.action-card,
+.action-card:hover,
+.action-card:focus,
+.action-card:active {
+  border-radius: 16px !important;
+}
+
+.pots__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Fix secondary buttons to have white background */
+.edu-card__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+.task-card-new__button--secondary {
+  background-color: white !important;
+  color: #218fb7 !important;
+  border-color: #218fb7 !important;
+}
+
+/* Ensure primary button text stays white on card hover */
+.task-card-new:hover .task-card-new__button--primary {
+  color: white !important;
+}
+
+.edu-card:hover .edu-card__button--primary {
+  color: white !important;
+}
+
+.task-card-new__button {
+  padding: 10px 20px !important;
+  border-radius: 999px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid transparent !important;
+  background-color: #218fb7 !important;
+  color: white !important;
+  width: fit-content !important; /* Hug the label, not stretch full width */
+}
+
+/* Updated card widths to 380px as requested */
+.tasks__cards .task-card-new {
+  flex: 0 0 380px !important;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid #d9e1e7;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 380px !important;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.edu-card:hover {
+}
+
+.edu-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.edu-card__badge-icon {
+  font-size: 14px;
+}
+
+.edu-card__badge-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #112231;
+}
+
+.edu-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.edu-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112231;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.edu-card__description {
+  font-size: 14px;
+  color: #75817e;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.edu-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.edu-card__button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content; /* Hug the label, not stretch full width */
+}
+
+.edu-card__button--primary {
+  background-color: #218fb7;
+  color: white;
+  border-color: #218fb7;
+}
+
+.edu-card__button--primary:hover {
+  background-color: #1a7a9a;
+  border-color: #1a7a9a;
+}
+
+.edu-card__button--secondary {
+  background-color: transparent;
+  color: #218fb7;
+  border-color: #218fb7;
+}
+
+.edu-card__button--secondary:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+}
+
+/* Global Button Styling */
+.card__footer a,
+.card__footer button,
+.view-all-link,
+.view-all-btn {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+/* Payment Request Cards - Fix hover state */
+.payment-request-card:hover {
+  background-color: rgba(33, 143, 183, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border: none;
+}
+
