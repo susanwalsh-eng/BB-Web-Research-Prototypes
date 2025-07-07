@@ -6,10 +6,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  basePath: '/forest-wines-dashboard',
-  assetPrefix: '/forest-wines-dashboard/',
-  output: 'export',
-  trailingSlash: true,
   images: {
     unoptimized: true
   },
