@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
+  distDir: "out",
+  trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -7,8 +10,13 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
+  // GitHub Pages configuration
+  basePath:
+    process.env.NODE_ENV === "production" ? "/BB-Web-Research-Prototypes" : "",
+  assetPrefix:
+    process.env.NODE_ENV === "production" ? "/BB-Web-Research-Prototypes" : "",
 };
 
-export default nextConfig; 
+export default nextConfig;
