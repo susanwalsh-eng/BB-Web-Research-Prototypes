@@ -7,15 +7,15 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   // Only apply basePath and assetPrefix for production builds
-  ...(process.env.NODE_ENV === 'production' && {
-    basePath: '/BB-Web-Research-Prototypes/July2025/build/prototype-1',
-    assetPrefix: '/BB-Web-Research-Prototypes/July2025/build/prototype-1/',
-    output: 'export',
+  ...(process.env.NODE_ENV === "production" && {
+    basePath: "/BB-Web-Research-Prototypes/July2025/build/prototype-1",
+    assetPrefix: "/BB-Web-Research-Prototypes/July2025/build/prototype-1/",
+    output: "export",
     trailingSlash: true,
   }),
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
 };
 
-export default nextConfig; 
+module.exports = nextConfig;
