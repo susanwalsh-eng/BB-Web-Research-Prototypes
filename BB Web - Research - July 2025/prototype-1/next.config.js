@@ -19,4 +19,4 @@ const nextConfig = {
     process.env.NODE_ENV === "production" ? "/BB-Web-Research-Prototypes" : "",
 };
 
-export default nextConfig;
+module.exports = nextConfig;
