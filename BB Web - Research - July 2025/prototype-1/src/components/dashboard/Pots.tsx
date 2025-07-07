@@ -21,21 +21,21 @@ export default function Pots({ onNavigate }: PotsProps) {
       name: "Tax Pot",
       balance: 1258.0,
       currency: "GBP",
-      icon: "/forest-wines-dashboard/tax-pot.png",
+      icon: "./tax-pot.png",
       subLabel: "Balance in GBP",
     },
     {
       name: "Rainday fund",
       balance: 1258.0,
       currency: "GBP",
-      icon: "/forest-wines-dashboard/rainy-day-pot.png",
+      icon: "./rainy-day-pot.png",
       subLabel: "Balance in GBP",
     },
     {
       name: "Savings",
       balance: 1788.0,
       currency: "GBP",
-      icon: "/forest-wines-dashboard/savings-pot.png",
+      icon: "./savings-pot.png",
       subLabel: "1 Pot + 1 challenge",
     },
   ];
@@ -133,7 +133,11 @@ function PotsSummaryItem({
   };
 
   // Pot icons for stacking
-  const potIcons = ["/tax-pot.png", "/rainy-day-pot.png", "/savings-pot.png"];
+  const potIcons = [
+    "./tax-pot.png",
+    "./rainy-day-pot.png",
+    "./savings-pot.png",
+  ];
 
   return (
     <div

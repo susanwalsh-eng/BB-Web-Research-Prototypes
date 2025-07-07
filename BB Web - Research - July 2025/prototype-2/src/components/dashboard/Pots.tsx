@@ -20,19 +20,19 @@ export default function Pots({ onNavigate }: PotsProps) {
       name: "Tax Pot",
       balance: 1258.0,
       currency: "GBP",
-      icon: "/tax-pot.png",
+      icon: "./tax-pot.png",
     },
     {
       name: "Rainday fund",
       balance: 1258.0,
       currency: "GBP",
-      icon: "/rainy-day-pot.png",
+      icon: "./rainy-day-pot.png",
     },
     {
       name: "Savings",
       balance: 1788.0,
       currency: "GBP",
-      icon: "/savings-pot.png",
+      icon: "./savings-pot.png",
     },
   ];
 
