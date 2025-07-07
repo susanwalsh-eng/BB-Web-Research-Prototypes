@@ -12,11 +12,15 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // GitHub Pages configuration
+  // GitHub Pages configuration - only apply basePath for production builds
   basePath:
-    process.env.NODE_ENV === "production" ? "/BB-Web-Research-Prototypes" : "",
+    process.env.NODE_ENV === "production" && !process.env.LOCAL
+      ? "/BB-Web-Research-Prototypes"
+      : "",
   assetPrefix:
-    process.env.NODE_ENV === "production" ? "/BB-Web-Research-Prototypes" : "",
+    process.env.NODE_ENV === "production" && !process.env.LOCAL
+      ? "/BB-Web-Research-Prototypes"
+      : "",
 };
 
 module.exports = nextConfig;

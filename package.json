@@ -8,16 +8,26 @@
     "dev:prototype1": "cd 'BB Web - Research - July 2025/prototype-1' && npm run dev",
     "dev:prototype2": "cd 'BB Web - Research - July 2025/prototype-2' && npm run dev",
     "build": "./build-for-github-pages.sh",
+    "build:local": "./build-local.sh",
     "build:prototype1": "cd 'BB Web - Research - July 2025/prototype-1' && npm run build",
     "build:prototype2": "cd 'BB Web - Research - July 2025/prototype-2' && npm run build",
-    "serve": "cd dist && python3 -m http.server 8000",
+    "serve": "cd dist && npx serve . -p 8000",
+    "serve:local": "npm run build:local && cd dist && npx serve . -p 8000",
     "clean": "rm -rf dist && rm -rf 'BB Web - Research - July 2025/prototype-1/out' && rm -rf 'BB Web - Research - July 2025/prototype-2/out'"
   },
+  "keywords": [
+    "business-banking",
+    "monzo",
+    "nextjs",
+    "react",
+    "typescript",
+    "prototype"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/monzo/BB-Web-Research-Prototypes.git"
+    "url": "git+https://github.com/monzo/BB-Web-Research-Prototypes.git"
   },
-  "author": "Monzo Bank",
+  "author": "Monzo Business Banking Team",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
