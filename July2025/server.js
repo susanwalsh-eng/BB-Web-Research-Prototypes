@@ -30,57 +30,66 @@ function serveFile(filePath, res) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.writeHead(404, { "Content-Type": "text/plain" });
-      res.end("File not found");
-      return;
+      res.end("404 Not Found");
+    } else {
+      const mimeType = getMimeType(filePath);
+      res.writeHead(200, { "Content-Type": mimeType });
+      res.end(data);
     }
-
-    const mimeType = getMimeType(filePath);
-    res.writeHead(200, { "Content-Type": mimeType });
-    res.end(data);
   });
 }
 
 const server = http.createServer((req, res) => {
-  let pathname = url.parse(req.url).pathname;
+  const parsedUrl = url.parse(req.url, true);
+  let pathname = parsedUrl.pathname;
 
-  // Handle asset path redirects
+  // Handle root path
+  if (pathname === "/") {
+    pathname = "/index.html";
+  }
+
+  // Handle asset redirects for GitHub Pages compatibility
   if (pathname.startsWith("/BB-Web-Research-Prototypes/prototype-1/")) {
     pathname = pathname.replace(
       "/BB-Web-Research-Prototypes/prototype-1/",
-      "/build/prototype-1/"
+      "/prototype-1/"
     );
   } else if (pathname.startsWith("/BB-Web-Research-Prototypes/prototype-2/")) {
     pathname = pathname.replace(
       "/BB-Web-Research-Prototypes/prototype-2/",
-      "/build/prototype-2/"
+      "/prototype-2/"
     );
   }
 
-  // Default to index.html for directory requests
-  if (pathname === "/") {
-    pathname = "/index.html";
-  } else if (pathname.endsWith("/")) {
-    pathname += "index.html";
+  // Handle build directory paths (for legacy compatibility)
+  if (pathname.startsWith("/build/prototype-1/")) {
+    pathname = pathname.replace("/build/prototype-1/", "/prototype-1/");
+  } else if (pathname.startsWith("/build/prototype-2/")) {
+    pathname = pathname.replace("/build/prototype-2/", "/prototype-2/");
   }
 
+  // Construct the file path
   const filePath = path.join(__dirname, pathname);
 
   // Check if file exists
-  fs.access(filePath, fs.constants.F_OK, (err) => {
+  fs.stat(filePath, (err, stats) => {
     if (err) {
       res.writeHead(404, { "Content-Type": "text/plain" });
-      res.end("File not found");
-      return;
+      res.end("404 Not Found");
+    } else if (stats.isDirectory()) {
+      // Try to serve index.html from the directory
+      const indexPath = path.join(filePath, "index.html");
+      serveFile(indexPath, res);
+    } else {
+      serveFile(filePath, res);
     }
-
-    serveFile(filePath, res);
   });
 });
 
-const port = 8080;
-server.listen(port, () => {
-  console.log(`🚀 Server running at http://localhost:${port}/`);
+const PORT = 8080;
+server.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}/`);
   console.log(`📁 Serving files from: ${__dirname}`);
-  console.log(`🎯 Prototype 1: http://localhost:${port}/build/prototype-1/`);
-  console.log(`🎯 Prototype 2: http://localhost:${port}/build/prototype-2/`);
+  console.log(`🎯 Prototype 1: http://localhost:${PORT}/prototype-1/`);
+  console.log(`🎯 Prototype 2: http://localhost:${PORT}/prototype-2/`);
 });

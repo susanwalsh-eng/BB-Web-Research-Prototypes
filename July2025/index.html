@@ -339,7 +339,7 @@
                         </div>
         
                         
-                        <a href="./build/prototype-1/" class="cta-button" id="prototype1-link">
+                        <a href="./prototype-1/" class="cta-button" id="prototype1-link">
                             View Prototype
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -356,7 +356,7 @@
                         
                     
                         
-                        <a href="./build/prototype-2/" class="cta-button" id="prototype2-link">
+                        <a href="./prototype-2/" class="cta-button" id="prototype2-link">
                             View Prototype
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -397,13 +397,13 @@
             const isLocalDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
             
             if (isLocalDevelopment) {
-                // For local development, use the build versions (they work perfectly)
-                console.log('🚀 Local development detected - using build prototypes');
-                // Links already point to ./build/prototype-1/ and ./build/prototype-2/ which work locally
+                // For local development, use the direct prototype paths
+                console.log('🚀 Local development detected - using prototype paths');
+                // Links already point to ./prototype-1/ and ./prototype-2/ which work locally
             } else {
                 // For GitHub Pages, ensure paths are correct
-                document.getElementById('prototype1-link').href = './build/prototype-1/';
-                document.getElementById('prototype2-link').href = './build/prototype-2/';
+                document.getElementById('prototype1-link').href = './prototype-1/';
+                document.getElementById('prototype2-link').href = './prototype-2/';
             }
             
             // Show loading state briefly
