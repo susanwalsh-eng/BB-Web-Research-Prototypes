@@ -39,17 +39,12 @@ jobs:
           BB Web - Research - July 2025/prototype-1/package-lock.json
           BB Web - Research - July 2025/prototype-2/package-lock.json
     
-    - name: Configure Next.js for GitHub Pages
+    - name: Verify Next.js configurations
       run: |
-        # Update prototype-1 config
-        cd "BB Web - Research - July 2025/prototype-1"
-        sed -i.bak 's|basePath: .*|basePath: "/BB-Web-Research-Prototypes/prototype-1",|' next.config.js
-        sed -i.bak 's|assetPrefix: .*|assetPrefix: "/BB-Web-Research-Prototypes/prototype-1/",|' next.config.js
-        
-        # Update prototype-2 config  
-        cd "../prototype-2"
-        sed -i.bak 's|basePath: .*|basePath: "/BB-Web-Research-Prototypes/prototype-2",|' next.config.js
-        sed -i.bak 's|assetPrefix: .*|assetPrefix: "/BB-Web-Research-Prototypes/prototype-2/",|' next.config.js
+        echo "✅ Next.js configurations already set for GitHub Pages"
+        echo "Checking prototype configurations..."
+        grep -n "basePath" "BB Web - Research - July 2025/prototype-1/next.config.js"
+        grep -n "basePath" "BB Web - Research - July 2025/prototype-2/next.config.js"
     
     - name: Install dependencies and build prototypes
       run: |

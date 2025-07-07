@@ -6,8 +6,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  basePath: '/forest-wines-dashboard',
-  assetPrefix: '/forest-wines-dashboard/',
+  basePath: '/BB-Web-Research-Prototypes/prototype-1',
+  assetPrefix: '/BB-Web-Research-Prototypes/prototype-1/',
   output: 'export',
   trailingSlash: true,
   images: {
