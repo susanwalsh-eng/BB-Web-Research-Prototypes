@@ -1,168 +1,110 @@
-# Forest Wines Dashboard - Unified Prototypes
+# BB-Web-Research-Prototypes
 
-A comprehensive banking dashboard application built with Next.js and TypeScript, featuring multiple prototype iterations for rapid development and testing.
+Web Research Prototypes for Business Banking
 
-## 🏗️ Repository Structure
+## 🚀 GitHub Pages Deployment
+
+This repository is set up to automatically deploy to GitHub Pages when changes are pushed to the `main` branch.
+
+### Setup Instructions
+
+1. **Enable GitHub Pages**:
+
+   - Go to your repository Settings
+   - Navigate to Pages section
+   - Under "Source", select "GitHub Actions"
+   - The workflow will automatically deploy on the next push
+
+2. **Access the Site**:
+   - Your site will be available at: `https://[username].github.io/BB-Web-Research-Prototypes`
+   - The root redirects to the July 2025 research overview
+
+### Site Structure
 
 ```
-forest-wines-dashboard/
-├── prototype-1/              # Original dashboard implementation
-├── prototype-2/              # Enhanced with Suggested Actions feature
-├── shared/                   # Shared components and utilities (future)
-└── README.md                # This documentation
+/                           → Redirects to /July2025/
+/July2025/                  → Main overview page with prototype links
+/July2025/prototype-1/      → Prototype 1 (placeholder)
+/July2025/prototype-2/      → Prototype 2 (placeholder)
 ```
 
-## 🚀 Prototypes Overview
+### Local Development
 
-### Prototype 1 - Original Dashboard
-**Location**: `./prototype-1/`
+To run locally, simply open `index.html` in your browser or use a local server:
 
-**Features:**
-- Complete banking dashboard with sidebar navigation
-- Account balance overview with Monzo branding
-- Payment requests with contextual card interactions
-- Scheduled payments table with side panel details
-- Cash flow metrics and recent activity
-- Get Paid page with invoices management
-- Payments page with payment tools and recipients
-- Responsive design and mobile optimization
-
-**Key Components:**
-- `DashboardHeader` - Main header with branding
-- `PaymentRequests` - Expandable payment cards
-- `ScheduledPayments` - Table with interactive rows
-- `GetPaid` - Invoice management with filtering
-- `Payments` - Payment tools and recent recipients
-
-### Prototype 2 - Suggested Actions Enhancement
-**Location**: `./prototype-2/`
-
-**New Features:**
-- **"Forest Wines 2" branding** - Updated header to identify prototype version
-- **Suggested Actions component** - Horizontal scrolling cards with transport controls
-- **Mock data integration** - 5 sample action cards from JSON database
-- **Enhanced UI interactions** - Left/right arrow navigation
-- **Contextual cards replacement** - Replaced right sidebar with main content integration
-
-**Key Additions:**
-- `SuggestedActions` component with transport controls
-- `suggestedActions.json` mock data
-- Updated CSS styling for new layout
-- Removed contextual card stack dependencies
-
-**Design Specifications:**
-- Title: "Suggested actions" with sparkle icon (✨)
-- Horizontally scrollable layout with overflow handling
-- Card width: ~325px with rounded corners
-- Transport controls: circular arrow buttons in top-right
-- Status pills: OVERDUE (orange), PAID (green), DRAFT (grey), DUE (dark)
-
-## 🛠️ Development Setup
-
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-
-### Running Prototype 1
 ```bash
-cd prototype-1
-npm install
-npm run dev
-```
-Open [http://localhost:3000/forest-wines-dashboard/](http://localhost:3000/forest-wines-dashboard/)
+# Using Python 3
+python -m http.server 8000
 
-### Running Prototype 2  
-```bash
-cd prototype-2
-npm install
-npm run dev
-```
-Open [http://localhost:3000/forest-wines-dashboard/](http://localhost:3000/forest-wines-dashboard/)
-
-## 🔧 Technical Stack
-
-- **Framework**: Next.js 15.3.4
-- **Language**: TypeScript
-- **Styling**: CSS Modules with custom properties
-- **Icons**: SVG components
-- **Data**: JSON mock data
-- **Responsive**: Mobile-first design
-
-## 📊 Comparison Between Prototypes
-
-| Feature | Prototype 1 | Prototype 2 |
-|---------|-------------|-------------|
-| Branding | "Forest Wines" | "Forest Wines 2" |
-| Right Sidebar | Contextual Cards | Removed |
-| Main Content | Standard layout | Suggested Actions integrated |
-| Transport Controls | None | Left/right arrows |
-| Mock Data | Banking data only | + Suggested actions |
-| Layout Width | Fixed with sidebar | Full-width main content |
-
-## 🎯 Future Development
-
-### Shared Components (./shared/)
-Plan to extract common components:
-- `Button` - Reusable button system
-- `Card` - Base card component
-- `Table` - Enhanced table with sorting
-- `Modal` - Unified modal system
-- `Icons` - SVG icon library
-
-### Next Prototypes
-- **Prototype 3**: Advanced filtering and search
-- **Prototype 4**: Real-time notifications
-- **Prototype 5**: Mobile-native optimizations
-
-## 🚀 Deployment
-
-Each prototype can be deployed independently:
-
-### Vercel Deployment
-```bash
-# For Prototype 1
-cd prototype-1
-vercel --prod
-
-# For Prototype 2  
-cd prototype-2
-vercel --prod
+# Using Node.js
+npx serve .
 ```
 
-### Docker Support
-```dockerfile
-# Example Dockerfile for any prototype
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-RUN npm run build
-EXPOSE 3000
-CMD ["npm", "start"]
+### Adding New Prototypes
+
+1. Create a new directory under `July2025/`
+2. Add an `index.html` file
+3. Update the links in `July2025/index.html`
+4. Commit and push - GitHub Actions will automatically deploy
+
+### Security Features
+
+- Password protection on the main overview page
+- Basic developer tools prevention
+- Right-click context menu disabled
+
+### Tech Stack
+
+- Pure HTML/CSS/JavaScript
+- No build process required
+- Responsive design with Inter font
+- Monzo brand colors and styling
+
+## 🛠️ Repository Structure
+
 ```
+BB-Web-Research-Prototypes/
+├── index.html                    # Root redirect page
+├── July2025/
+│   ├── index.html               # Main overview page
+│   ├── prototype-1/
+│   │   ├── index.html          # Prototype 1
+│   │   ├── next-env.d.ts       # Next.js config
+│   │   └── next.config.js      # Next.js config
+│   └── prototype-2/
+│       ├── index.html          # Prototype 2
+│       ├── next-env.d.ts       # Next.js config
+│       └── next.config.js      # Next.js config
+├── .github/workflows/
+│   └── deploy.yml              # GitHub Actions deployment
+└── README.md                   # This documentation
+```
+
+## 🎯 Current Status
+
+- **Root Page**: ✅ Redirects to July2025
+- **Overview Page**: ✅ Password protected with prototype links
+- **Prototype 1**: ✅ Placeholder page with Monzo branding
+- **Prototype 2**: ✅ Placeholder page with Monzo branding
+- **GitHub Pages**: ✅ Auto-deployment configured
 
 ## 📝 Development Notes
 
-- Each prototype maintains independent `package.json` and dependencies
-- Shared styling variables defined in `globals.css`
-- Mobile-responsive breakpoints: 768px (tablet), 480px (mobile)
-- TypeScript strict mode enabled
-- ESLint configuration for code quality
+- Each prototype is currently a static HTML page
+- Next.js config files present for future development
+- Consistent Monzo branding across all pages
+- Mobile-responsive design
+- Password: `forest2025`
 
 ## 🤝 Contributing
 
-1. Choose the appropriate prototype folder
-2. Make changes within that prototype's scope
-3. Test locally before committing
-4. Document any new features in this README
-
-## 📄 License
-
-Private repository - Forest Wines Banking Dashboard Prototypes
+1. Clone the repository
+2. Make changes to the appropriate files
+3. Test locally by opening `index.html`
+4. Commit and push - GitHub Actions will deploy automatically
 
 ---
 
-**Last Updated**: January 2, 2025  
-**Current Version**: Prototype 2 (Suggested Actions)  
-**Repository**: https://github.com/susanwalsh-eng/forest-wines-dashboard 
+**Last Updated**: January 2025  
+**Current Version**: Static HTML Prototypes  
+**Repository**: BB-Web-Research-Prototypes
