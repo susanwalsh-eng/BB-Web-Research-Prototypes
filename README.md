@@ -1,21 +1,3 @@
-# BB Web Research Prototypes
-
-This repository contains prototypes for BB Web Research project - July 2025.
-
-## GitHub Pages Deployment
-
-- **Main Page**: https://susanwalsh-eng.github.io/BB-Web-Research-Prototypes/
-- **Prototype 1**: https://susanwalsh-eng.github.io/BB-Web-Research-Prototypes/prototype-1/
-- **Prototype 2**: https://susanwalsh-eng.github.io/BB-Web-Research-Prototypes/prototype-2/
-
-## Local Development
-
-The source files are in the "BB Web - Research - July 2025" directory.
-
-## Deployment Status
-
-Last updated: July 7, 2025 - Triggering fresh GitHub Pages deployment
-
 # Forest Wines Dashboard - Unified Prototypes
 
 A comprehensive banking dashboard application built with Next.js and TypeScript, featuring multiple prototype iterations for rapid development and testing.
