@@ -6,8 +6,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  basePath: '/BB-Web-Research-Prototypes/prototype-1',
-  assetPrefix: '/BB-Web-Research-Prototypes/prototype-1/',
+  basePath: '/prototype-1',
+  assetPrefix: '/prototype-1/',
   output: 'export',
   trailingSlash: true,
   images: {
