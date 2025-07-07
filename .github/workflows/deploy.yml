@@ -65,6 +65,22 @@ jobs:
           cp -r "BB Web - Research - July 2025/prototype-1/out/." "dist/BB Web - Research - July 2025/prototype-1/"
           cp -r "BB Web - Research - July 2025/prototype-2/out/." "dist/BB Web - Research - July 2025/prototype-2/"
 
+          # Copy image assets to root level for GitHub Pages
+          echo "🖼️  Copying image assets for GitHub Pages..."
+          mkdir -p "dist/forest-wines-dashboard"
+
+          # Copy images from prototype 1
+          if ls "dist/BB Web - Research - July 2025/prototype-1/"*.png 1> /dev/null 2>&1; then
+              echo "   📋 Copying Prototype 1 images..."
+              cp "dist/BB Web - Research - July 2025/prototype-1/"*.png "dist/forest-wines-dashboard/"
+          fi
+
+          # Copy images from prototype 2 (will merge/overwrite with prototype 1 images)
+          if ls "dist/BB Web - Research - July 2025/prototype-2/"*.png 1> /dev/null 2>&1; then
+              echo "   📋 Merging Prototype 2 images..."
+              cp "dist/BB Web - Research - July 2025/prototype-2/"*.png "dist/forest-wines-dashboard/"
+          fi
+
           # Prevent GitHub Pages from running Jekyll
           touch dist/.nojekyll
 

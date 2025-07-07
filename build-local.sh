@@ -54,5 +54,22 @@ if [ -d "dist/BB Web - Research - July 2025/prototype-2/_next" ]; then
     cp -r "dist/BB Web - Research - July 2025/prototype-2/_next/"* "dist/_next/"
 fi
 
+# Copy image assets to root level for local development
+echo "🖼️  Merging image assets for local development..."
+
+# Copy images from prototype 1 (png files directly in the root of the build)
+if ls "dist/BB Web - Research - July 2025/prototype-1/"*.png 1> /dev/null 2>&1; then
+    echo "   📋 Copying Prototype 1 images..."
+    mkdir -p "dist/forest-wines-dashboard"
+    cp "dist/BB Web - Research - July 2025/prototype-1/"*.png "dist/forest-wines-dashboard/"
+fi
+
+# Copy images from prototype 2 (will merge/overwrite with prototype 1 images)
+if ls "dist/BB Web - Research - July 2025/prototype-2/"*.png 1> /dev/null 2>&1; then
+    echo "   📋 Merging Prototype 2 images..."
+    mkdir -p "dist/forest-wines-dashboard"
+    cp "dist/BB Web - Research - July 2025/prototype-2/"*.png "dist/forest-wines-dashboard/"
+fi
+
 echo "✅ Local build complete!"
 echo "🎯 Run 'npm run serve' to test locally" 
