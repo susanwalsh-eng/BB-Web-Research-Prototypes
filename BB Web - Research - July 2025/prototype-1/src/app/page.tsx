@@ -264,16 +264,14 @@ export default function Dashboard() {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'Activity':
-        // Parse URL params to determine if back button should be shown
-        const activityParams = new URLSearchParams(pageParams);
-        const showBackButton = activityParams.get('from') !== null;
+        // Always show back button on Activity page
         return (
           <AllActivity
             onRowClick={handleTransactionRowClick}
             selectedRowId={selectedTransactionId}
             onMenuStateChange={setContextualMenusOpen}
             onNavigate={handleNavigate}
-            showBackButton={showBackButton}
+            showBackButton={true}
           />
         );
       case 'Payments':
