@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const repoName = "BB-Web-Research-Prototypes";
+
 const nextConfig = {
   output: "export",
   distDir: "out",
@@ -15,11 +18,11 @@ const nextConfig = {
   // GitHub Pages configuration - only apply basePath for production builds
   basePath:
     process.env.NODE_ENV === "production" && !process.env.LOCAL
-      ? "/BB-Web-Research-Prototypes"
+      ? `/${repoName}/BB Web - Research - July 2025/prototype-1`
       : "",
   assetPrefix:
     process.env.NODE_ENV === "production" && !process.env.LOCAL
-      ? "/BB-Web-Research-Prototypes"
+      ? `/${repoName}/BB Web - Research - July 2025/prototype-1`
       : "",
 };
 

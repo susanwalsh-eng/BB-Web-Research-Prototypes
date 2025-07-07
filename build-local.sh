@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build script for local testing
-# This script builds both prototypes and organizes them for static deployment
+# This script builds both prototypes for local testing
 
 echo "🚀 Building BB Web Research Prototypes for local testing..."
 
@@ -20,12 +20,10 @@ LOCAL=1 NODE_ENV=production npm run build
 cd ../..
 
 # Prepare deployment artifact
-echo "🚀 Assembling artifact..."
+echo "🚀 Assembling artifact for local testing..."
 
-# Clean previous dist
+# Clean and create directory structure
 rm -rf dist
-
-# Create the final directory structure for local testing
 mkdir -p "dist/BB Web - Research - July 2025/prototype-1"
 mkdir -p "dist/BB Web - Research - July 2025/prototype-2"
 
@@ -35,15 +33,13 @@ if [ -f "BB Web - Research - July 2025/index.html" ]; then
     cp "BB Web - Research - July 2025/index.html" "dist/BB Web - Research - July 2025/"
 fi
 
-# Copy built prototypes
-echo "📋 Copying Prototype 1..."
-cp -r "BB Web - Research - July 2025/prototype-1/out/"* "dist/BB Web - Research - July 2025/prototype-1/"
+# Copy the built output of each prototype
+echo "📦 Copying built prototypes..."
+cp -r "BB Web - Research - July 2025/prototype-1/out/." "dist/BB Web - Research - July 2025/prototype-1/"
+cp -r "BB Web - Research - July 2025/prototype-2/out/." "dist/BB Web - Research - July 2025/prototype-2/"
 
-echo "📋 Copying Prototype 2..."
-cp -r "BB Web - Research - July 2025/prototype-2/out/"* "dist/BB Web - Research - July 2025/prototype-2/"
-
-# Merge _next assets from both prototypes to root level
-echo "🔗 Merging assets from both prototypes..."
+# Merge _next assets from both prototypes to root level for local development
+echo "🔗 Merging assets for local development..."
 mkdir -p "dist/_next"
 
 # Copy assets from prototype 1
@@ -58,6 +54,5 @@ if [ -d "dist/BB Web - Research - July 2025/prototype-2/_next" ]; then
     cp -r "dist/BB Web - Research - July 2025/prototype-2/_next/"* "dist/_next/"
 fi
 
-echo "✅ Build complete!"
-echo "📂 Files ready in dist/ directory"
-echo "🌐 Run 'npm run serve' to test locally" 
+echo "✅ Local build complete!"
+echo "🎯 Run 'npm run serve' to test locally" 
